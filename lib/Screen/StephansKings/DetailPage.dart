@@ -1,7 +1,7 @@
+
 import 'package:burgerking_apitest/Components/avatar_detail.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+
 
 class DetailPage extends StatelessWidget {
      final String? description;

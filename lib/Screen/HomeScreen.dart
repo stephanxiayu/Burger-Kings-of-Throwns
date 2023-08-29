@@ -2,7 +2,9 @@
 
 import 'package:burgerking_apitest/CharakterModel/charktermode_class.dart';
 import 'package:burgerking_apitest/Components/avatar.dart';
-import 'package:burgerking_apitest/Screen/DetailPage.dart';
+import 'package:burgerking_apitest/Screen/StephansKings/Stephanshome.dart';
+import 'package:burgerking_apitest/Screen/Thomas_Kings/Thomas_home_kings.dart';
+
 import 'package:burgerking_apitest/Service/api_request.dart';
 import 'package:flutter/material.dart';
 
@@ -29,118 +31,94 @@ List <CharacterModel >? data;
   setState(() {
     data = characters;
   });
+
+  
 }
+
+ int _currentIndex = 0;
+  final List<Widget> _children = [
+   const StephanHomeScreen(),
+    const ThomasHomeScreen()
+  
+  ];
 
   @override
 Widget build(BuildContext context) {
   if (data == null) {
     return Scaffold(
-      appBar: AppBar(title: Text("Loading...")),
+      appBar: AppBar(title: const Text("Loading...")),
       body: Center(child: ShimmerLoading()),
     );
   }
 
+ 
+
   return Scaffold(
-    appBar: AppBar(title: Text("Burger Kings")),
-    body: ListView.builder(
-      itemCount: data!.length,
-      itemBuilder: (context, index) {
-        return GestureDetector(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => DetailPage(
-                  fullName: data![index].fullName.toString(),
-                         firstName: data![index].firstName.toString(),
-                          lastName: data![index].lastName.toString(),
-                          imageUrl:data![index].imageUrl.toString(), 
-                          description: data![index].description.toString(),
-                          title: data![index].title.toString(),
-                  id: data![index].id,
-                  family: data![index].family.toString(),
-                ),
-              ),
-            );
-          },
-          child: Card(elevation: 9,
-            child: Avatar(
-              id: data![index].id.toString(),
-              image: data![index].imageUrl.toString(),
-              name: data![index].fullName.toString(),
-            ),
+   
+      body: _children[_currentIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
+        items: [
+          const BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Stephans Burger',
           ),
-        );
-      },
-    ),
-  );
-}
-
-}
-
-
-
-
-class ShimmerLoading extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: 10, // This can be however many skeleton items you want to show
-      itemBuilder: (_, __) => Shimmer.fromColors(
-        baseColor: Colors.grey[300]!,
-        highlightColor: Colors.grey[100]!,
-        child: ShimmerCard(),
-      ),
-    );
-  }
-}
-
-class ShimmerCard extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(15.0),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Container(
-            width: 48.0,
-            height: 48.0,
-            color: Colors.white,
+          const BottomNavigationBarItem(
+            icon: Icon(Icons.mail),
+            label: 'Thomas Kings',
           ),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8.0),
-          ),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Container(
-                  width: double.infinity,
-                  height: 8.0,
-                  color: Colors.white,
-                ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 2.0),
-                ),
-                Container(
-                  width: double.infinity,
-                  height: 8.0,
-                  color: Colors.white,
-                ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 2.0),
-                ),
-                Container(
-                  width: 40.0,
-                  height: 8.0,
-                  color: Colors.white,
-                ),
-              ],
-            ),
-          )
+          
         ],
       ),
     );
   }
 }
+  
+  
+  
+//    Scaffold(
+//     appBar: AppBar(title: Text("Burger Kings")),
+//     body: ListView.builder(
+//       itemCount: data!.length,
+//       itemBuilder: (context, index) {
+//         return GestureDetector(
+//           onTap: () {
+//             Navigator.push(
+//               context,
+//               MaterialPageRoute(
+//                 builder: (context) => DetailPage(
+//                   fullName: data![index].fullName.toString(),
+//                          firstName: data![index].firstName.toString(),
+//                           lastName: data![index].lastName.toString(),
+//                           imageUrl:data![index].imageUrl.toString(), 
+//                           description: data![index].description.toString(),
+//                           title: data![index].title.toString(),
+//                   id: data![index].id,
+//                   family: data![index].family.toString(),
+//                 ),
+//               ),
+//             );
+//           },
+//           child: Card(elevation: 9,
+//             child: Avatar(
+//               id: data![index].id.toString(),
+//               image: data![index].imageUrl.toString(),
+//               name: data![index].fullName.toString(),
+//             ),
+//           ),
+//         );
+//       },
+//     ),
+//   );
+// }
+
+// }
+
+
+
+
