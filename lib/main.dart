@@ -1,7 +1,30 @@
 import 'package:burgerking_apitest/Screen/HomeScreen.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 void main() {
+  ErrorWidget.builder = (FlutterErrorDetails details) {
+    return Scaffold(backgroundColor: Colors.black,
+      body: Container(
+          alignment: Alignment.center,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Lottie.asset("assets/error.json"),
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Text(
+                    'Fehlermeldung:\n${details.exception} \n\n Bitte den Kundenservice kontaktieren und ein Screenshot der Fehlermeldung schicken...!',
+                    style: const TextStyle(color: Colors.yellow, fontSize: 15),
+                    textAlign: TextAlign.center,
+                    textDirection: TextDirection.ltr,
+                  ),
+                ),
+              ],
+            ),
+          )),
+    );
+  };
   runApp(const MyApp());
 }
 
