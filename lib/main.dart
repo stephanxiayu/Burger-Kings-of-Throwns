@@ -1,11 +1,20 @@
 import 'package:burgerking_apitest/Screen/HomeScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'test_mode.dart' as flags;
+
+
+
+
+
 
 void main() {
-  ErrorWidget.builder = (FlutterErrorDetails details) {
-    return Scaffold(backgroundColor: Colors.black,
-      body: Container(
+  // Only set the ErrorWidget.builder in non-test modes.
+  if (flags.isInTestMode==false) {
+    ErrorWidget.builder = (FlutterErrorDetails details) {
+      return Scaffold(
+        backgroundColor: Colors.black,
+        body: Container(
           alignment: Alignment.center,
           child: SingleChildScrollView(
             child: Column(
@@ -22,11 +31,16 @@ void main() {
                 ),
               ],
             ),
-          )),
-    );
-  };
+          ),
+        ),
+      );
+    };
+  }
+
   runApp(const MyApp());
 }
+
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

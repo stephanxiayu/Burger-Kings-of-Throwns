@@ -3,13 +3,13 @@ import 'package:burgerking_apitest/CharakterModel/charktermode_class.dart';
 
 import 'dart:convert';
 import 'package:http/http.dart' as http;
- // Import your CharacterModel class
+ 
 
 class ApiService {
   
 
-  // Define the base URL
-  final String baseUrl = "https://thronesapi.com"; // This is just an example. Replace it with the actual base URL if it's different.
+
+  final String baseUrl = "https://thronesapi.com"; 
 
   Future<List<CharacterModel>?> getCharacters() async {
     var client = http.Client();
