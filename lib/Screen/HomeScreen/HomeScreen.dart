@@ -1,8 +1,10 @@
 
 
 import 'package:burgerking_apitest/CharakterModel/charktermode_class.dart';
+import 'package:burgerking_apitest/Components/AppScaffold.dart';
 import 'package:burgerking_apitest/Components/avatar.dart';
 import 'package:burgerking_apitest/Components/shimmer.dart';
+import 'package:burgerking_apitest/Screen/DetialScreen/DetailScreen.dart';
 
 import 'package:burgerking_apitest/Service/api_request.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +13,7 @@ import 'package:shimmer/shimmer.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+    static const String pageName = "HomeScreen";
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -37,17 +40,17 @@ List <CharacterModel >? data;
   @override
 Widget build(BuildContext context) {
   if (data == null) {
-    return Scaffold(
+    return AppScaffold(
       appBar: AppBar(title: const Text("Loading...")),
-      body: Center(child: ShimmerLoading()),
+      child: Center(child: ShimmerLoading()),
     );
   }
 
  
 
-  return   Scaffold(
-    appBar: AppBar(title: Text("Burger Kings")),
-    body: ListView.builder(
+  return   AppScaffold(
+  
+    child: ListView.builder(
       itemCount: data!.length,
       itemBuilder: (context, index) {
         return GestureDetector(

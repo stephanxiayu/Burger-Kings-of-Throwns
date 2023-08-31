@@ -1,6 +1,12 @@
-import 'package:burgerking_apitest/Screen/HomeScreen.dart';
+
+import 'package:burgerking_apitest/Screen/HomeScreen/HomeScreen.dart';
+import 'package:burgerking_apitest/Service/approuter.dart';
+import 'package:burgerking_apitest/Service/globalContraoller.dart';
+import 'package:burgerking_apitest/Service/styles.dart';
+import 'package:burgerking_apitest/Service/utilities.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
 import 'test_mode.dart' as flags;
 
 
@@ -37,9 +43,11 @@ void main() {
     };
   }
 
-  runApp(const MyApp());
+  runApp(ChangeNotifierProvider<GlobalController>(
+    create: (_) => GlobalController(),
+    child:  Styles(child: const MyApp()),
+  ));
 }
-
 
 
 class MyApp extends StatelessWidget {
@@ -48,13 +56,23 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false,
-      title: 'My one and only Royal Experience is Burger Kind',
-      theme: ThemeData.dark(
-       
-       
+         Provider.of<GlobalController>(context, listen: false);
+    final String initialPage = HomeScreen.pageName;
+    return 
+   Utils(
+      globalController: Provider.of<GlobalController>(context),
+      child:
+      MaterialApp(debugShowCheckedModeBanner: false,
+      initialRoute: initialPage,
+        onGenerateRoute: AppRouter.generateRoute,
+        locale: Provider.of<GlobalController>(context).locale,
+        title: 'My one and only Royal Experience is Burger Kind',
+        theme: ThemeData.dark(
+         
+         
+        ),
+        // home:  const HomeScreen(),
       ),
-      home:  const HomeScreen(),
     );
   }
 }
