@@ -1,12 +1,17 @@
 
+import 'package:burgerking_apitest/CharakterModel/charktermode_class.dart';
 import 'package:burgerking_apitest/Screen/HomeScreen/HomeScreen.dart';
-import 'package:burgerking_apitest/Service/approuter.dart';
-import 'package:burgerking_apitest/Service/globalContraoller.dart';
-import 'package:burgerking_apitest/Service/styles.dart';
-import 'package:burgerking_apitest/Service/utilities.dart';
+import 'package:burgerking_apitest/Service/api_request.dart';
+import 'package:burgerking_apitest/Shared/approuter.dart';
+
+import 'package:burgerking_apitest/Shared/globalContraoller.dart';
+import 'package:burgerking_apitest/Shared/styles.dart';
+import 'package:burgerking_apitest/Shared/utilities.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
+import 'package:swipe_cards/draggable_card.dart';
+import 'package:swipe_cards/swipe_cards.dart';
 import 'test_mode.dart' as flags;
 
 
@@ -71,9 +76,10 @@ class MyApp extends StatelessWidget {
          
          
         ),
-        // home:  const HomeScreen(),
+        // home:   MyHomePage(),
       ),
     );
   }
 }
+
 

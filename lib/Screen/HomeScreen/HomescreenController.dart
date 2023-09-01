@@ -1,6 +1,7 @@
 
 
-import 'package:burgerking_apitest/Service/globalContraoller.dart';
+
+import 'package:burgerking_apitest/Shared/globalContraoller.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreenController extends ChangeNotifier {
