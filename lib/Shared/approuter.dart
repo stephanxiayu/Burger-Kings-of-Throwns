@@ -38,7 +38,7 @@ class AppRouter {
               create: (context) => ProfilController(
                   Provider.of<GlobalController>(context, listen: false)),
                
-              child: const ProfilScreen()),
+              child:  ProfilScreen()),
         );
      
       default:

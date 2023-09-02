@@ -34,6 +34,11 @@ dependencies:
   flutter_svg: ^2.0.1 
   swipe_cards: ^2.0.0+1
   shared_preferences:
+  image_picker:
+  percent_indicator: ^4.0.1
+  
+  syncfusion_flutter_pdfviewer: ^20.4.51
+
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -72,7 +77,7 @@ flutter:
   assets:
     - assets/
     - assets/SVG/
-  #   - images/a_dot_ham.jpeg
+    - assets/cv.pdf
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

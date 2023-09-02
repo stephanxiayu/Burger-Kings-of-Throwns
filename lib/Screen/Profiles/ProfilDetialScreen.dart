@@ -1,0 +1,35 @@
+import 'package:burgerking_apitest/Components/AppScaffold.dart';
+import 'package:burgerking_apitest/Shared/styles.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:flutter/src/widgets/framework.dart';
+import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
+
+class ProfilDetailScreen extends StatefulWidget {
+  const ProfilDetailScreen({super.key});
+
+  @override
+  State<ProfilDetailScreen> createState() => _ProfilDetailScreenState();
+}
+
+class _ProfilDetailScreenState extends State<ProfilDetailScreen> {
+  final GlobalKey<SfPdfViewerState> _pdfViewerKey = GlobalKey();
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+Widget build(BuildContext context) {
+  return AppScaffold(
+    
+    child: Container(color:Styles.of(context).darkblue ,
+      child: SfPdfViewer.asset(
+        'assets/cv.pdf',
+        key: _pdfViewerKey,
+      ),
+    ),
+  );
+}
+}

@@ -1,5 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.burgerking_apitest">
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
    <application
         android:label="burgerking_apitest"
         android:name="${applicationName}"
