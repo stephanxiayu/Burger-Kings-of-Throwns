@@ -2,6 +2,7 @@
 import 'dart:convert';
 
 import 'package:burgerking_apitest/Components/AppScaffold.dart';
+import 'package:burgerking_apitest/Service/DataModels/charktermode_class.dart';
 import 'package:flutter/material.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
