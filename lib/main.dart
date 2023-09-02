@@ -1,5 +1,4 @@
 
-import 'package:burgerking_apitest/CharakterModel/charktermode_class.dart';
 import 'package:burgerking_apitest/Screen/HomeScreen/HomeScreen.dart';
 import 'package:burgerking_apitest/Service/api_request.dart';
 import 'package:burgerking_apitest/Shared/approuter.dart';

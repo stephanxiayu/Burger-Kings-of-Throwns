@@ -5,21 +5,12 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
-class ProfilDetailScreen extends StatefulWidget {
-  const ProfilDetailScreen({super.key});
-
-  @override
-  State<ProfilDetailScreen> createState() => _ProfilDetailScreenState();
-}
-
-class _ProfilDetailScreenState extends State<ProfilDetailScreen> {
+class ProfilDetailScreen extends StatelessWidget {
+   ProfilDetailScreen({super.key});
   final GlobalKey<SfPdfViewerState> _pdfViewerKey = GlobalKey();
 
-  @override
-  void initState() {
-    super.initState();
-  }
 
+ 
   @override
 Widget build(BuildContext context) {
   return AppScaffold(

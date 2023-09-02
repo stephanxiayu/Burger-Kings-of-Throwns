@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../CharakterModel/charktermode_class.dart';
 class ChatScreen extends StatefulWidget {
   static const String pageName = "ChatScreen";
   

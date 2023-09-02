@@ -1,3 +1,4 @@
+import 'package:burgerking_apitest/Shared/styles.dart';
 import 'package:flutter/material.dart';
 
 
@@ -23,14 +24,16 @@ class CharacterCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
+    return Card( color: Styles.of(context).darkblue,
+    shadowColor: Colors.red,
       elevation: 5.0,
       margin: const EdgeInsets.all(15.0),
       child: Column(
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Image.network(imageUrl, fit: BoxFit.cover),
+            child: Container(decoration: BoxDecoration(border: Border.all(color: Colors.red)),
+              child: Image.network(imageUrl, fit: BoxFit.cover)),
           ),
           ListTile(
             title: Text("Character Detail"),
@@ -41,7 +44,7 @@ class CharacterCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text('ID: $id'),
+             
                 SizedBox(height: 5),
                 Text('First Name: $firstName'),
                 SizedBox(height: 5),

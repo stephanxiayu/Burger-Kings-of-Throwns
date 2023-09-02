@@ -3,6 +3,7 @@
 
 
 import 'package:burgerking_apitest/Components/AppScaffold.dart';
+import 'package:burgerking_apitest/Components/NewAppbar.dart';
 import 'package:burgerking_apitest/Components/avatar_detail.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +21,7 @@ class DetailScreen extends StatelessWidget {
 static const String pageName = "DetialScreen";
   @override
   Widget build(BuildContext context) {
-    return  AppScaffold(appBar: AppBar( title: Text(fullName.toString()),),
+    return  AppScaffold( 
       child: CharacterCard(id:id,
       family:family.toString(), firstName: firstName.toString(), fullName: fullName.toString(), imageUrl: imageUrl.toString(), lastName: lastName.toString(), title: title.toString(),),
     );

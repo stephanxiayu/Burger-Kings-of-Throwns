@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:burgerking_apitest/CharakterModel/charktermode_class.dart';
+import 'package:burgerking_apitest/Service/DataModels/charktermode_class.dart';
 import 'package:burgerking_apitest/Components/AppScaffold.dart';
 import 'package:burgerking_apitest/Components/avatar_detail.dart';
 import 'package:burgerking_apitest/Screen/DetailScreen/DetailScreen.dart';

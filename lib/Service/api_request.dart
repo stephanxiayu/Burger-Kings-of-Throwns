@@ -1,5 +1,5 @@
 
-import 'package:burgerking_apitest/CharakterModel/charktermode_class.dart';
+import 'DataModels/charktermode_class.dart';
 
 import 'dart:convert';
 import 'package:http/http.dart' as http;

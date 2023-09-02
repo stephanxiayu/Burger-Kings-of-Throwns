@@ -40,7 +40,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
    onPressed: () {
   Navigator.of(context).push(
     MaterialPageRoute(
-      builder: (context) => const ProfilDetailScreen(),
+      builder: (context) =>  ProfilDetailScreen(),
     ),
   );
    };
@@ -48,7 +48,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
     child: GestureDetector(onTap: () {
       Navigator.of(context).push(
     MaterialPageRoute(
-      builder: (context) => const ProfilDetailScreen(),
+      builder: (context) =>  ProfilDetailScreen(),
     ),
   );
     },
