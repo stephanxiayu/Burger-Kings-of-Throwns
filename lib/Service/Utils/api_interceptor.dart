@@ -1,3 +1,4 @@
+import 'package:burgerking_apitest/Service/Utils/api_request_failure.dart';
 import 'package:dartz/dartz.dart';
 
 

@@ -1,5 +1,6 @@
 
 import 'package:burgerking_apitest/Screen/HomeScreen/HomeScreen.dart';
+import 'package:burgerking_apitest/Service/Setup/data_layer_setup.dart';
 import 'package:burgerking_apitest/Service/api_request.dart';
 import 'package:burgerking_apitest/Shared/approuter.dart';
 
@@ -18,7 +19,10 @@ import 'test_mode.dart' as flags;
 
 
 
-void main() {
+Future<void> main() async {
+
+   await DataLayerSetup.initialize();
+ 
   // Only set the ErrorWidget.builder in non-test modes.
   if (flags.isInTestMode==false) {
     ErrorWidget.builder = (FlutterErrorDetails details) {

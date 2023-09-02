@@ -1,8 +1,7 @@
 import 'package:burgerking_apitest/Components/AppScaffold.dart';
 import 'package:burgerking_apitest/Shared/styles.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:flutter/src/widgets/framework.dart';
+
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 class ProfilDetailScreen extends StatelessWidget {

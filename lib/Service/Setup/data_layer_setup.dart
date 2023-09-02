@@ -7,15 +7,14 @@ import 'package:get_it/get_it.dart';
 final getIt = GetIt.instance;
 
 class DataLayerSetup {
-  static Future<void> initialize({required cacheImplementation}) async {
-    //... other services, repos, and use cases registrations
+  static Future<void> initialize() async {
 
     // Character related registrations
     getIt.registerLazySingleton<CharacterModelService>(
         () => CharacterModelServiceImplementation());
 
     getIt.registerLazySingleton(() => CreateCharacterCase(getIt()));
-    getIt.registerLazySingleton(() => GetCharacterCase(getIt()));
+    getIt.registerLazySingleton(() => GetAllCharactersCase(getIt()));
     getIt.registerLazySingleton(() => UpdateCharacterCase(getIt()));
 
     //... continuation of the other registrations
