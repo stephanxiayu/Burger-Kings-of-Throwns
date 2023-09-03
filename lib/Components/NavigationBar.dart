@@ -32,7 +32,7 @@ class NaviBar extends StatelessWidget {
           
         
         
-          elevation: selectedPage == HomeScreen.pageName ? 9 : 0,
+      
           child: SVGAppBarItem(
             pageName: HomeScreen.pageName,
             iconPath: 'assets/SVG/tinder2.svg',
@@ -46,7 +46,7 @@ class NaviBar extends StatelessWidget {
           
         
         
-          elevation: selectedPage == ChatScreen.pageName ? 9 : 0,
+         
           child: SVGAppBarItem(
             pageName: ChatScreen.pageName,
            iconPath: 'assets/SVG/chat.svg',
@@ -60,7 +60,7 @@ class NaviBar extends StatelessWidget {
           
         
         
-          elevation: selectedPage == ProfilScreen.pageName ? 9 : 0,
+      
           child: SVGAppBarItem(
             pageName: ProfilScreen.pageName,
             iconPath: 'assets/SVG/profil.svg',

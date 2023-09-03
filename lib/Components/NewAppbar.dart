@@ -1,5 +1,6 @@
 
 
+import 'package:burgerking_apitest/Screen/HomeScreen/HomeScreen.dart';
 import 'package:burgerking_apitest/Shared/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -12,7 +13,7 @@ class NewAppbar extends StatelessWidget implements PreferredSizeWidget {
 final String? selectedPage;
   @override
   Widget build(BuildContext context) {
-    return  AppBar(title: Text(title?? ""),
+    return  AppBar(title:  Text(selectedPage == HomeScreen.pageName?"Tinder of Throwns": selectedPage.toString(), style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red),),
   backgroundColor: Styles.of(context).darkblue,);
   }
   @override

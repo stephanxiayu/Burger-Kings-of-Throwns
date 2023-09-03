@@ -1,4 +1,5 @@
 import 'package:burgerking_apitest/Components/AppScaffold.dart';
+import 'package:burgerking_apitest/Screen/Profiles/ProfilScreen.dart';
 import 'package:burgerking_apitest/Shared/styles.dart';
 import 'package:flutter/material.dart';
 
@@ -13,6 +14,7 @@ class ProfilDetailScreen extends StatelessWidget {
   @override
 Widget build(BuildContext context) {
   return AppScaffold(
+    selectedPage: ProfilScreen.pageName,
     
     child: Container(color:Styles.of(context).darkblue ,
       child: SfPdfViewer.asset(

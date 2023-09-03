@@ -30,7 +30,8 @@ class SVGAppBarItem extends StatelessWidget {
         IconButton(
           icon: SvgPicture.asset(
             isPressed ? activeIconPath : iconPath,
-            color: isPressed ? Colors.amberAccent : Colors.red.shade800,
+            
+            color: isPressed ? Colors.red : Colors.grey,
           ),
           iconSize: 20,
           onPressed: () {
@@ -44,7 +45,7 @@ class SVGAppBarItem extends StatelessWidget {
           activeTitle,
           style: TextStyle(
             fontWeight: FontWeight.bold,
-            fontSize: 7,
+            fontSize: 10,
             color: isPressed ? Colors.white : Colors.white,
           ),
         )

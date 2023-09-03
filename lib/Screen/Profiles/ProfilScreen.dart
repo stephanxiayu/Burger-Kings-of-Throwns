@@ -9,7 +9,7 @@ import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class ProfilScreen extends StatefulWidget {
   ProfilScreen({super.key});
-  static const String pageName = "ProfilScreen";
+  static const String pageName = "Profil des Entwicklers";
 
   @override
   State<ProfilScreen> createState() => _ProfilScreenState();
@@ -27,6 +27,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
   @override
   Widget build(BuildContext context) {
     return AppScaffold(
+      selectedPage: ProfilScreen.pageName,
       child: Column(mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.center,
         children: [

@@ -43,14 +43,15 @@ class _HomeScreenState extends State<HomeScreen> {
         future: homeScreenController.fetchData(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return ShimmerLoading(); // Or any other loading widget
+            return AppScaffold(selectedPage: HomeScreen.pageName,
+              child: ShimmerLoading()); // Or any other loading widget
           }
 
           if (snapshot.hasError) {
             return Text('Error: ${snapshot.error}');
           }
 
-          return AppScaffold(
+          return AppScaffold(selectedPage: HomeScreen.pageName,
             key: _scaffoldKey,
             child: Stack(children: [
               SizedBox(

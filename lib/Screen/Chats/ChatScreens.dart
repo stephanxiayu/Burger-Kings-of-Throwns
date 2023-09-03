@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 class ChatScreen extends StatefulWidget {
-  static const String pageName = "ChatScreen";
+  static const String pageName = "Deine Chats";
 
   ChatScreen({Key? key}) : super(key: key);
 
@@ -43,6 +43,7 @@ class _ChatScreenState extends State<ChatScreen> {
   @override
   Widget build(BuildContext context) {
     return AppScaffold(
+      selectedPage: ChatScreen.pageName,
       child: Column(
         children: [
           Expanded(flex: 2,
@@ -61,8 +62,8 @@ class _ChatScreenState extends State<ChatScreen> {
   itemBuilder: (context, index) {
     final item = items[index].character;
     return Container(
-      height: 80.0,  // <-- define a fixed height
-      width: 80.0,  // optional: you can define a width too if you want
+      height: 150.0,  // <-- define a fixed height
+      width: 100.0,  // optional: you can define a width too if you want
       margin: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 10.0),
       
       child: ListTile(
@@ -73,7 +74,7 @@ class _ChatScreenState extends State<ChatScreen> {
           width: 2.0,
         ),
       ),
-          child: CircleAvatar(child: Image.network(item.imageUrl.toString(), fit: BoxFit.cover))),
+          child: CircleAvatar(child: Image.network(item.imageUrl.toString(), fit: BoxFit.fill))),
        subtitle:   Text(item.firstName.toString(), style: const TextStyle(fontSize: 16.0)),
        
       ),
