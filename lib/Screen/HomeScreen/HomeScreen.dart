@@ -1,9 +1,14 @@
+
+
+import 'dart:math';
+
 import 'package:burgerking_apitest/Components/shimmer.dart';
 import 'package:burgerking_apitest/Screen/HomeScreen/HomescreenController.dart';
 import 'package:burgerking_apitest/Service/DataModels/charktermode_class.dart';
 import 'package:burgerking_apitest/Components/AppScaffold.dart';
 
 import 'package:burgerking_apitest/Screen/DetailScreen/DetailScreen.dart';
+import 'package:confetti/confetti.dart';
 
 import 'package:flutter/material.dart';
 
@@ -28,13 +33,38 @@ class _HomeScreenState extends State<HomeScreen> {
   List<SwipeItem> swipeItems = <SwipeItem>[];
   MatchEngine? matchEngine;
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
+ ConfettiController? _confettiController;
 
   @override
   void initState() {
     super.initState();
     homeScreenController.fetchData();
+    _confettiController = ConfettiController(duration: const Duration(seconds: 6));
   }
 
+ Path drawStar(Size size) {
+    // Method to convert degree to radians
+    double degToRad(double deg) => deg * (pi / 180.0);
+
+    const numberOfPoints = 5;
+    final halfWidth = size.width / 2;
+    final externalRadius = halfWidth;
+    final internalRadius = halfWidth / 2.5;
+    final degreesPerStep = degToRad(360 / numberOfPoints);
+    final halfDegreesPerStep = degreesPerStep / 2;
+    final path = Path();
+    final fullAngle = degToRad(360);
+    path.moveTo(size.width, halfWidth);
+
+    for (double step = 0; step < fullAngle; step += degreesPerStep) {
+      path.lineTo(halfWidth + externalRadius * cos(step),
+          halfWidth + externalRadius * sin(step));
+      path.lineTo(halfWidth + internalRadius * cos(step + halfDegreesPerStep),
+          halfWidth + internalRadius * sin(step + halfDegreesPerStep));
+    }
+    path.close();
+    return path;
+  }
   @override
   Widget build(BuildContext context) {
     HomeScreenController homeScreenController = HomeScreenController();
@@ -213,6 +243,22 @@ class _HomeScreenState extends State<HomeScreen> {
                                       ),
                                     ),
                             ),
+                             Align(
+            alignment: Alignment.center,
+            child: ConfettiWidget(
+              confettiController: _confettiController!,
+              blastDirectionality: BlastDirectionality.explosive,
+              shouldLoop: true,
+              colors: const [
+                Colors.green,
+                Colors.blue,
+                Colors.pink,
+                Colors.orange,
+                Colors.purple
+              ],
+              createParticlePath: drawStar,
+            ),
+          ),
                           ],
                         ));
                   },
@@ -239,7 +285,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       CircleAvatar(
                         radius: 30,
-                        backgroundColor: Colors.red[300],
+                        backgroundColor: Colors.red,
                         child: IconButton(
                           onPressed: () {
                             homeScreenController.matchEngine!.currentItem
@@ -252,11 +298,17 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       CircleAvatar(
                         radius: 30,
-                        backgroundColor: Colors.blue[300],
+                        backgroundColor: Colors.blue,
                         child: IconButton(
                           onPressed: () {
                             homeScreenController.matchEngine!.currentItem
                                 ?.superLike();
+                                _confettiController?.play();
+ScaffoldMessenger.of(context).showSnackBar(  
+                            const SnackBar(backgroundColor: Colors.transparent,elevation: 9,padding: EdgeInsets.only(bottom: 200),
+                      content: Center(child:  Text(" MATCH ", style: TextStyle(fontSize: 40, backgroundColor: Colors.transparent, color: Colors.blue),)),
+                      duration: Duration(seconds: 2),
+                    ));
                           },
                           icon: const Icon(Icons.star,
                               color: Colors.white, size: 30.0),
@@ -265,11 +317,19 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       CircleAvatar(
                         radius: 30,
-                        backgroundColor: Colors.green[300],
+                        backgroundColor: Colors.green,
                         child: IconButton(
-                          onPressed: () {
+                          onPressed: () async{
                             homeScreenController.matchEngine!.currentItem
                                 ?.like();
+                          _confettiController?.play();
+                     
+                          ScaffoldMessenger.of(context).showSnackBar(  
+                            const SnackBar(backgroundColor: Colors.transparent,elevation: 9,padding: EdgeInsets.only(bottom: 200),
+                      content: Center(child:  Text(" MATCH", style: TextStyle(fontSize: 40, backgroundColor: Colors.transparent, color: Colors.green),)),
+                      duration: Duration(seconds: 2),
+                    ));
+
                           },
                           icon: const Icon(Icons.favorite,
                               color: Colors.white, size: 30.0),
