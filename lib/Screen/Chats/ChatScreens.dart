@@ -6,10 +6,9 @@ import 'package:burgerking_apitest/Service/DataModels/charktermode_class.dart';
 import 'package:flutter/material.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
-
 class ChatScreen extends StatefulWidget {
   static const String pageName = "ChatScreen";
-  
+
   ChatScreen({Key? key}) : super(key: key);
 
   @override
@@ -17,8 +16,17 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
-  late Future<List<CharacterModel>> likedItems;
-  late Future<List<CharacterModel>> superLikedItems;
+  late Future<List<Item>> items;
+
+  Future<List<Item>> _combineLists() async {
+    final liked = await _getFromPrefs('likedItems');
+    final superLiked = await _getFromPrefs('superLikedItems');
+
+    List<Item> combined = liked.map((e) => Item(e, false)).toList();
+    combined.addAll(superLiked.map((e) => Item(e, true)).toList());
+
+    return combined;
+  }
 
   Future<List<CharacterModel>> _getFromPrefs(String key) async {
     final prefs = await SharedPreferences.getInstance();
@@ -29,8 +37,7 @@ class _ChatScreenState extends State<ChatScreen> {
   @override
   void initState() {
     super.initState();
-    likedItems = _getFromPrefs('likedItems');
-    superLikedItems = _getFromPrefs('superLikedItems');
+    items = _combineLists();
   }
 
   @override
@@ -38,58 +45,59 @@ class _ChatScreenState extends State<ChatScreen> {
     return AppScaffold(
       child: Column(
         children: [
-          Text("Liked:"),
-          Expanded(
-            child: FutureBuilder<List<CharacterModel>>(
-              future: likedItems,
+          Expanded(flex: 2,
+            child: FutureBuilder<List<Item>>(
+              future: items,
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.done) {
                   if (snapshot.hasError) {
                     return Center(child: Text('Error: ${snapshot.error}'));
                   }
                   final items = snapshot.data ?? [];
-                  return ListView.builder(
-                    itemCount: items.length,
-                    itemBuilder: (context, index) {
-                      return ListTile(
-                        title: Text(items[index].fullName.toString()),
-                        leading: Image.network(items[index].imageUrl.toString(), width: 50, fit: BoxFit.cover),
-                      );
-                    },
-                  );
+                  return 
+                ListView.builder(
+  scrollDirection: Axis.horizontal,
+  itemCount: items.length,
+  itemBuilder: (context, index) {
+    final item = items[index].character;
+    return Container(
+      height: 80.0,  // <-- define a fixed height
+      width: 80.0,  // optional: you can define a width too if you want
+      margin: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 10.0),
+      
+      child: ListTile(
+        contentPadding: const EdgeInsets.symmetric(horizontal: 3.0),
+        title:Container(decoration: BoxDecoration(
+        border: Border.all(
+          color: items[index].isSuperLiked ? Colors.blue : Colors.green,
+          width: 2.0,
+        ),
+      ),
+          child: CircleAvatar(child: Image.network(item.imageUrl.toString(), fit: BoxFit.cover))),
+       subtitle:   Text(item.firstName.toString(), style: const TextStyle(fontSize: 16.0)),
+       
+      ),
+    );
+  },
+);
+
                 } else {
-                  return Center(child: CircularProgressIndicator());
+                  return const Center(child: CircularProgressIndicator());
                 }
               },
             ),
           ),
-          Text("Superliked:"),
-          Expanded(
-            child: FutureBuilder<List<CharacterModel>>(
-              future: superLikedItems,
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.done) {
-                  if (snapshot.hasError) {
-                    return Center(child: Text('Error: ${snapshot.error}'));
-                  }
-                  final items = snapshot.data ?? [];
-                  return ListView.builder(
-                    itemCount: items.length,
-                    itemBuilder: (context, index) {
-                      return ListTile(
-                        title: Text(items[index].fullName.toString()),
-                        leading: Image.network(items[index].imageUrl.toString(), width: 50, fit: BoxFit.cover),
-                      );
-                    },
-                  );
-                } else {
-                  return Center(child: CircularProgressIndicator());
-                }
-              },
-            ),
-          ),
+          const Expanded(flex: 8,
+            child: Text("chats"))
         ],
       ),
     );
   }
+}
+
+class Item {
+  final CharacterModel character;
+  final bool isSuperLiked;
+
+  Item(this.character, this.isSuperLiked);
 }

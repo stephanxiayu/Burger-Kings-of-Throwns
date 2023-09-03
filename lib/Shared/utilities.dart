@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class Utils extends InheritedWidget {
     final GlobalController globalController;
-      Utils({Key? key, required Widget child, required this.globalController})
+      const Utils({Key? key, required Widget child, required this.globalController})
       : super(key: key, child: child);
   @override
   bool updateShouldNotify(covariant InheritedWidget oldWidget) {

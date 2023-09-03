@@ -1,7 +1,7 @@
 
 import 'package:burgerking_apitest/Screen/HomeScreen/HomeScreen.dart';
 import 'package:burgerking_apitest/Service/Setup/data_layer_setup.dart';
-import 'package:burgerking_apitest/Service/api_request.dart';
+
 import 'package:burgerking_apitest/Shared/approuter.dart';
 
 import 'package:burgerking_apitest/Shared/globalContraoller.dart';
@@ -10,8 +10,7 @@ import 'package:burgerking_apitest/Shared/utilities.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
-import 'package:swipe_cards/draggable_card.dart';
-import 'package:swipe_cards/swipe_cards.dart';
+
 import 'test_mode.dart' as flags;
 
 
@@ -53,7 +52,7 @@ Future<void> main() async {
 
   runApp(ChangeNotifierProvider<GlobalController>(
     create: (_) => GlobalController(),
-    child:  Styles(child: const MyApp()),
+    child:  const Styles(child: MyApp()),
   ));
 }
 
@@ -65,7 +64,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
          Provider.of<GlobalController>(context, listen: false);
-    final String initialPage = HomeScreen.pageName;
+    const String initialPage = HomeScreen.pageName;
     return 
    Utils(
       globalController: Provider.of<GlobalController>(context),

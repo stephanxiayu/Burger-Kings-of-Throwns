@@ -27,8 +27,7 @@ class NavigationErrorPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              "ERROR: the Page you're trying to open doesn't exist in ph_router, please add its name. PageName: " +
-                  (errorPageName ?? "no name entered"),
+              "ERROR: the Page you're trying to open doesn't exist in ph_router, please add its name. PageName: ${errorPageName ?? "no name entered"}",
               style: Styles.of(context).big(context),
             ),
           ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Styles extends InheritedWidget {
-   Styles({Key? key, required Widget child})
+   const Styles({Key? key, required Widget child})
       : super(key: key, child: child);
       static const double headLine3 = 50;
   static const double headLine4 = 36;
@@ -18,7 +18,7 @@ class Styles extends InheritedWidget {
 
   static const double button = 16; // bold CAPS
 
-  final Color darkblue = Color.fromARGB(255, 17, 35, 50);
+  final Color darkblue =const Color.fromARGB(255, 17, 35, 50);
 
   void showSuccess(BuildContext context, String message) {
     _showSnackBar(context, Colors.white, message);
