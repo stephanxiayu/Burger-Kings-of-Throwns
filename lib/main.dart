@@ -21,7 +21,7 @@ import 'test_mode.dart' as flags;
 
 Future<void> main() async {
 
-   await DataLayerSetup.initialize();
+  await DataLayerSetup.initialize();
  
   // Only set the ErrorWidget.builder in non-test modes.
   if (flags.isInTestMode==false) {

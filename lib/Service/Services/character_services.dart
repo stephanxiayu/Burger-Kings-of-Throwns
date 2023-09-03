@@ -11,7 +11,7 @@ class CharacterModelServiceImplementation extends BaseApi implements CharacterMo
 
   @override
   Future<CharacterModel> createCharacter(CharacterModel character) async {
-    final response = await dio.post('/api/characters', data: character.toJson());
+    final response = await dio.post('/api/v2/Characters', data: character.toJson());
 
     if (response.statusCode == 200 || response.statusCode == 201) {
       return CharacterModel.fromJson(response.data);
@@ -21,7 +21,7 @@ class CharacterModelServiceImplementation extends BaseApi implements CharacterMo
 
   @override
   Future<List<CharacterModel>> getAllCharacters() async {
-    final response = await dio.get('/api/characters');
+    final response = await dio.get('/api/v2/Characters');
     
     if (response.statusCode == 200 || response.statusCode == 201) {
       return (response.data as List).map((character) => CharacterModel.fromJson(character)).toList();
@@ -31,7 +31,7 @@ class CharacterModelServiceImplementation extends BaseApi implements CharacterMo
 
   @override
   Future<CharacterModel> updateCharacter(int id, CharacterModel character) async {
-    final response = await dio.patch('/api/characters/$id', data: character.toJson());
+    final response = await dio.patch('/api/v2/Characters/$id', data: character.toJson());
 
     if (response.statusCode == 200 || response.statusCode == 201) {
       return CharacterModel.fromJson(response.data);
