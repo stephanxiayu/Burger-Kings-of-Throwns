@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:burgerking_apitest/Components/shimmer.dart';
 import 'package:burgerking_apitest/Screen/HomeScreen/HomescreenController.dart';
 import 'package:burgerking_apitest/Service/DataModels/charktermode_class.dart';
 import 'package:burgerking_apitest/Components/AppScaffold.dart';
@@ -20,7 +21,6 @@ import 'package:swipe_cards/swipe_cards.dart';
 
 
 import '../../Components/Content.dart';
-import '../../Components/shimmer.dart';
 
 bool listContainsCharacter(
     List<CharacterModel> list, CharacterModel character) {
@@ -85,7 +85,7 @@ void initState() {
 Future<void> fetchData() async {
   HomeScreenController controller = context.read<HomeScreenController>();
   await controller.getAllCharacters();  // Make sure this function returns a Future if it's async
-  data = controller.characterData;
+  data = controller.characterData.cast<CharacterModel>();
 
       for (int i = 0; i < data!.length; i++) {
         _swipeItems.add(SwipeItem(

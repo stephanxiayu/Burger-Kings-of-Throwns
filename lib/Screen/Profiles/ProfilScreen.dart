@@ -1,7 +1,7 @@
-import 'dart:io';
+
 
 import 'package:burgerking_apitest/Components/AppScaffold.dart';
-import 'package:burgerking_apitest/Components/avatar.dart';
+
 import 'package:burgerking_apitest/Screen/Profiles/ProfilDetialScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -37,13 +37,13 @@ class _ProfilScreenState extends State<ProfilScreen> {
   animation: true,
   percent: 0.95,
   center: GestureDetector(onTap: (){
-   onPressed: () {
+ 
   Navigator.of(context).push(
     MaterialPageRoute(
       builder: (context) =>  ProfilDetailScreen(),
     ),
   );
-   };
+   
   },
     child: GestureDetector(onTap: () {
       Navigator.of(context).push(

@@ -1,10 +1,6 @@
-import 'package:burgerking_apitest/Service/DataModels/charktermode_class.dart';
-import 'package:burgerking_apitest/Service/Setup/data_layer_setup.dart';
-import 'package:dio/dio.dart';
-import 'package:flutter_svg/svg.dart';
-
 
 import 'package:dio/dio.dart';
+
 
 class BaseApi {
   final String defaultUri = "https://thronesapi.com";
@@ -49,7 +45,7 @@ class BaseApi {
       }
     } catch (e) {
       print("Failed to fetch list with error: $e");
-      throw e;
+      rethrow;
     }
   }
 
