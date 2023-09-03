@@ -20,6 +20,7 @@ import 'package:swipe_cards/swipe_cards.dart';
 
 
 import '../../Components/Content.dart';
+import '../../Components/shimmer.dart';
 
 bool listContainsCharacter(
     List<CharacterModel> list, CharacterModel character) {
@@ -75,19 +76,16 @@ class _HomeScreenState extends State<HomeScreen> {
       await _saveToPrefs('superLikedItems', superLikedItems);
     }
   }
+@override
+void initState() {
+  super.initState();
+  fetchData();
+}
 
-  @override
-  void initState() {
-    fetchData();
-     HomeScreenController controller = context.read<HomeScreenController>();
-     controller.getAllCharacters();
-    super.initState();
-  }
-
-  fetchData() async {
-    var characters = await ApiService().getCharacters();
-    setState(() {
-      data = characters;
+Future<void> fetchData() async {
+  HomeScreenController controller = context.read<HomeScreenController>();
+  await controller.getAllCharacters();  // Make sure this function returns a Future if it's async
+  data = controller.characterData;
 
       for (int i = 0; i < data!.length; i++) {
         _swipeItems.add(SwipeItem(
@@ -133,20 +131,23 @@ class _HomeScreenState extends State<HomeScreen> {
       }
 
       _matchEngine = MatchEngine(swipeItems: _swipeItems);
-    });
+    
   }
-
-  @override
-  Widget build(BuildContext context) {
+@override
+Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
-    if (data == null) {
-      return AppScaffold(
-        appBar: AppBar(title: const Text("Loading...")),
-        child: const Center(child: CircularProgressIndicator()),
-      );
-    }
+  return FutureBuilder(
+    future: fetchData(),
+    builder: (context, snapshot) {
+      if (snapshot.connectionState == ConnectionState.waiting) {
+        return ShimmerLoading(); // Or any other loading widget
+      }
 
-    return AppScaffold(
+      if (snapshot.hasError) {
+        return Text('Error: ${snapshot.error}');
+      }
+     
+        return AppScaffold(
       key: _scaffoldKey,
       child: Container(
         child: Stack(children: [
@@ -155,6 +156,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: SwipeCards(
               matchEngine: _matchEngine!,
               itemBuilder: (BuildContext context, int index) {
+                print("print all images ${_swipeItems[index].content.imageUrl}");
                 return Container(
                     alignment: Alignment.center,
                     child: Stack(
@@ -346,8 +348,8 @@ class _HomeScreenState extends State<HomeScreen> {
         ]),
       ),
     );
-  }
-}
+    });
+    
 
-
+  }}
 

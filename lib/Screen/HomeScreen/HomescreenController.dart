@@ -17,7 +17,7 @@ List<CharacterModel> characterData;
   Future<void> getAllCharacters()async{
   var response=await GetAllCharactersCase.it.call(null);
   response.fold((l) => l.error, (r) {
-    print("print test ${r}");
+    // print("print test ${r}");
    characterData = r ;
     notifyListeners();
 
