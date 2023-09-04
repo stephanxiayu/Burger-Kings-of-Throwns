@@ -16,13 +16,13 @@ class ProfilScreen extends StatefulWidget {
 }
 
 class _ProfilScreenState extends State<ProfilScreen> {
-  XFile? _imageFile;  // Change PickedFile? to XFile?
+  // XFile? _imageFile;  // Change PickedFile? to XFile?
 
-  Future<XFile?> _getImageFromGallery() async {
-    final picker = ImagePicker();
-    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
-    return pickedFile;
-  }
+  // Future<XFile?> _getImageFromGallery() async {
+  //   final picker = ImagePicker();
+  //   final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+  //   return pickedFile;
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -32,40 +32,45 @@ class _ProfilScreenState extends State<ProfilScreen> {
       crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           // if (_imageFile != null)
-            CircularPercentIndicator(
-  radius: 120.0,
-  lineWidth: 13.0,
-  animation: true,
-  percent: 0.95,
-  center: GestureDetector(onTap: (){
- 
-  Navigator.of(context).push(
-    MaterialPageRoute(
-      builder: (context) =>  ProfilDetailScreen(),
-    ),
-  );
-   
-  },
-    child: GestureDetector(onTap: () {
-      Navigator.of(context).push(
-    MaterialPageRoute(
-      builder: (context) =>  ProfilDetailScreen(),
-    ),
-  );
-    },
-      child: const CircleAvatar(
-        radius: 100,  // Adjust to fit within the CircularPercentIndicator
-        backgroundImage:AssetImage("assets/bild.jpeg")
-        //  FileImage(File(_imageFile!.path)),
-      ),
-    ),
-  ),
-  circularStrokeCap: CircularStrokeCap.round,
-  progressColor: Colors.red,
-  footer: Container(width: 200,height: 30,
-    color: Colors.red,
-    child: const Center(child: Text("95 % Vollständig", style: TextStyle(color: Colors.white, fontSize: 20),))),
-),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Center(
+                child: CircularPercentIndicator(
+                radius: 120.0,
+                lineWidth: 13.0,
+                animation: true,
+                percent: 0.95,
+                center: GestureDetector(onTap: (){
+               
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) =>  ProfilDetailScreen(),
+                  ),
+                );
+                 
+                },
+                  child: GestureDetector(onTap: () {
+                    Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) =>  ProfilDetailScreen(),
+                  ),
+                );
+                  },
+                    child: const CircleAvatar(
+                      radius: 100,  // Adjust to fit within the CircularPercentIndicator
+                      backgroundImage:AssetImage("assets/bild.jpeg")
+                      //  FileImage(File(_imageFile!.path)),
+                    ),
+                  ),
+                ),
+                circularStrokeCap: CircularStrokeCap.round,
+                progressColor: Colors.red,
+                footer: Container(width: 200,height: 30,
+                  color: Colors.red,
+                  child: const Center(child: Text("95 % Vollständig", style: TextStyle(color: Colors.white, fontSize: 20),))),
+              ),
+              ),
+            ),
 
           // ElevatedButton(
           //   child: Text("Pick Image"),

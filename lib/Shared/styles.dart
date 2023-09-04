@@ -21,7 +21,7 @@ class Styles extends InheritedWidget {
   final Color darkblue =const Color.fromARGB(255, 17, 35, 50);
 
   void showSuccess(BuildContext context, String message) {
-    _showSnackBar(context, Colors.white, message);
+    _showSnackBar(context, Colors.transparent, message);
   }
 
   

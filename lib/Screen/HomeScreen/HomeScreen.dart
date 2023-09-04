@@ -264,7 +264,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   },
                   onStackFinished: () {
                     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                      content: Text("Game OVER! Du möchtest mehr Royales Erlebnis, dann geh zu Burger Kind in deiner Nähne", style: TextStyle(fontSize: 20),),
+                      content: Text("Game OVER! Du möchtest mehr Royales Erlebnis, dann geh zu Burger King in deiner Nähne", style: TextStyle(fontSize: 20),),
                       duration: Duration(seconds: 20),
                     ));
                   },

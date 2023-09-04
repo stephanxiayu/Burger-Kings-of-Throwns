@@ -17,7 +17,7 @@ Widget build(BuildContext context) {
     selectedPage: ProfilScreen.pageName,
     
     child: Container(color:Styles.of(context).darkblue ,
-      child: SfPdfViewer.asset(
+      child: SfPdfViewer.asset(enableDoubleTapZooming: true,
         'assets/cv.pdf',
         key: _pdfViewerKey,
       ),
