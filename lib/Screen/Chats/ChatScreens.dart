@@ -3,10 +3,15 @@ import 'dart:convert';
 
 import 'package:burgerking_apitest/Components/AppScaffold.dart';
 import 'package:burgerking_apitest/Screen/Chats/ChatDetailScreen.dart';
+import 'package:burgerking_apitest/Service/DataModels/Items.dart';
 import 'package:burgerking_apitest/Service/DataModels/charktermode_class.dart';
+import 'package:burgerking_apitest/Service/DataModels/chatScreenModel.dart';
+import 'package:burgerking_apitest/Shared/styles.dart';
 import 'package:flutter/material.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../Service/DataModels/onGoungChat.dart';
 class ChatScreen extends StatefulWidget {
   static const String pageName = "Deine Chats";
 
@@ -18,6 +23,9 @@ class ChatScreen extends StatefulWidget {
 
 class _ChatScreenState extends State<ChatScreen> {
   late Future<List<Item>> items;
+List<ChatMessage> currentChats = [];
+List<OngoingChat> ongoingChats = [];
+
 
   Future<List<Item>> _combineLists() async {
     final liked = await _getFromPrefs('likedItems');
@@ -28,18 +36,53 @@ class _ChatScreenState extends State<ChatScreen> {
 
     return combined;
   }
+Future<List<ChatMessage>> _getChatsForCharacter(String characterId) async {
+  final prefs = await SharedPreferences.getInstance();
+  final savedChats = prefs.getStringList('chats') ?? [];
+  final chats = savedChats
+    .map((chatData) => ChatMessage.fromJson(jsonDecode(chatData)))
+    .where((chat) => chat.id == characterId)
+    .toList();
+  print("Fetched chats for character $characterId: $chats");
+  return chats;
+}
+
 
   Future<List<CharacterModel>> _getFromPrefs(String key) async {
     final prefs = await SharedPreferences.getInstance();
     final data = prefs.getStringList(key) ?? [];
     return data.map((item) => CharacterModel.fromJson(jsonDecode(item))).toList();
   }
+  
+  Future<void> _fetchOngoingChats() async {
+  List<Item> allItems = await items;  // This line waits for the future to complete and get the actual list
+  List<OngoingChat> tempOngoingChats = [];
 
-  @override
-  void initState() {
-    super.initState();
-    items = _combineLists();
+  for (Item item in allItems) {
+    List<ChatMessage> chatsForCharacter = await _getChatsForCharacter(item.character.id.toString()); 
+
+    if (chatsForCharacter.isNotEmpty) {
+      ChatMessage lastMessage = chatsForCharacter.last;
+      OngoingChat ongoingChat = OngoingChat(character: item.character, lastMessage: lastMessage);  // Pass item.character which is of type CharacterModel
+      tempOngoingChats.add(ongoingChat);
+    }
   }
+
+  if (mounted) {
+    setState(() {
+      ongoingChats = tempOngoingChats;
+    });
+  }
+}
+
+
+
+@override
+void initState() {
+  super.initState();
+  items = _combineLists();
+  _fetchOngoingChats();
+}
 
   @override
   Widget build(BuildContext context) {
@@ -62,12 +105,37 @@ class _ChatScreenState extends State<ChatScreen> {
   itemCount: items.length,
   itemBuilder: (context, index) {
     final item = items[index].character;
-    return GestureDetector(onTap: () {
- Navigator.of(context).push(
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  ChatDetailScreen(url:item.imageUrl.toString(),)));
-    },
+    return 
+GestureDetector(
+onTap: () async {
+  print("Fetching chats for character: ${item.id.toString()}");
+  final chats = await _getChatsForCharacter(item.id.toString());
+
+  if (chats.isNotEmpty) {
+    final lastMessage = chats.last;
+
+    final ongoingChatIndex = ongoingChats.indexWhere((chat) => chat.character.id == item.id);
+    if (ongoingChatIndex != -1) {
+      // Replace with a new instance
+      setState(() {
+        ongoingChats[ongoingChatIndex] = OngoingChat(character: item, lastMessage: lastMessage);
+      });
+    } else {
+      setState(() {
+        ongoingChats.add(OngoingChat(character: item, lastMessage: lastMessage));
+      });
+    }
+  }
+
+  // Navigate to the ChatDetailScreen outside the chats.isNotEmpty condition
+  Navigator.of(context).push(
+    MaterialPageRoute(
+      builder: (context) => ChatDetailScreen(characterId: item.id.toString(), url: item.imageUrl.toString())
+    )
+  );
+},
+
+
       child: Container(
         height: 150.0,  // <-- define a fixed height
         width: 100.0,  // optional: you can define a width too if you want
@@ -96,17 +164,44 @@ class _ChatScreenState extends State<ChatScreen> {
               },
             ),
           ),
-          const Expanded(flex: 8,
-            child: Text("chats"))
+       Expanded(
+  flex: 8,
+  child: ongoingChats.isNotEmpty
+      ? ListView.builder(
+          itemCount: ongoingChats.length,
+          itemBuilder: (context, index) {
+            final chat = ongoingChats[index];
+            return GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => ChatDetailScreen(
+                      characterId: chat.character.id.toString(),
+                      url: chat.character.imageUrl.toString(),
+                    ),
+                  ),
+                );
+              },
+              child: Card(color: Styles.of(context).darkblue,
+                child: ListTile(
+                  title: Text(chat.lastMessage.message,
+                      style: const TextStyle(color: Colors.white)),
+                  leading: Image.network(chat.character.imageUrl.toString()),
+                  subtitle: Text(chat.character.firstName.toString()),
+                ),
+              ),
+            );
+          },
+        )
+      : const Center(child: Text('No ongoing chats.')),
+),
+
+
+
         ],
       ),
     );
   }
 }
 
-class Item {
-  final CharacterModel character;
-  final bool isSuperLiked;
 
-  Item(this.character, this.isSuperLiked);
-}

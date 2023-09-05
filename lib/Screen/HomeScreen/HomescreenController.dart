@@ -84,20 +84,21 @@ class HomeScreenController extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> _saveToPrefs(String key, List<CharacterModel> items) async {
-    final prefs = await SharedPreferences.getInstance();
-    final data = items.map((item) => jsonEncode(item.toJson())).toList();
-    await prefs.setStringList(key, data);
-    notifyListeners();
-  }
+Future<void> _saveToPrefs(String key, List<CharacterModel> items) async {
+  final prefs = await SharedPreferences.getInstance();
+  final data = items.map((item) => jsonEncode(item.toJson())).toList();
+  await prefs.setStringList(key, data);
+  notifyListeners();
+}
 
-  Future<List<CharacterModel>> _getFromPrefs(String key) async {
-    final prefs = await SharedPreferences.getInstance();
-    final data = prefs.getStringList(key) ?? [];
-    return data
-        .map((item) => CharacterModel.fromJson(jsonDecode(item)))
-        .toList();
-  }
+
+Future<List<CharacterModel>> _getFromPrefs(String key) async {
+  final prefs = await SharedPreferences.getInstance();
+  final data = prefs.getStringList(key) ?? [];
+  return data
+      .map((item) => CharacterModel.fromJson(jsonDecode(item)))
+      .toList();
+}
 
   void likeAction(CharacterModel character) async {
     if (!listContainsCharacter(likedItems, character)) {
