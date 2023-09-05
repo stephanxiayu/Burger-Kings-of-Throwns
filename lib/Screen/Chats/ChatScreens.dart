@@ -136,24 +136,31 @@ onTap: () async {
 },
 
 
-      child: Container(
-        height: 150.0,  // <-- define a fixed height
-        width: 100.0,  // optional: you can define a width too if you want
-        margin: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 10.0),
-        
-        child: ListTile(
-          contentPadding: const EdgeInsets.symmetric(horizontal: 3.0),
-          title:Container(decoration: BoxDecoration(
-          border: Border.all(
-            color: items[index].isSuperLiked ? Colors.blue : Colors.green,
-            width: 2.0,
-          ),
-        ),
-            child: CircleAvatar(child: Image.network(item.imageUrl.toString(), fit: BoxFit.fill))),
-         subtitle:   Text(item.firstName.toString(), style: const TextStyle(fontSize: 16.0)),
-         
+      child: 
+     Container(
+  height: 150.0,  // <-- define a fixed height
+  width: 100.0,   // optional: you can define a width too if you want
+  margin: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 10.0),
+
+  child: ListTile(
+    contentPadding: const EdgeInsets.symmetric(horizontal: 3.0),
+    title: Container(
+      decoration: BoxDecoration(shape: BoxShape.circle,
+        border: Border.all(
+          color: items[index].isSuperLiked ? Colors.blue : Colors.green,
+          
+          width: 2.0,
         ),
       ),
+      child: CircleAvatar(
+        backgroundImage: NetworkImage(item.imageUrl.toString()), // <-- This is the change
+        radius: 50.0, // Adjust the radius if required
+      )
+    ),
+    subtitle: Text(item.firstName.toString(), style: const TextStyle(fontSize: 16.0)),
+  ),
+),
+
     );
   },
 );
@@ -165,7 +172,7 @@ onTap: () async {
             ),
           ),
        Expanded(
-  flex: 8,
+  flex: 7,
   child: ongoingChats.isNotEmpty
       ? ListView.builder(
           itemCount: ongoingChats.length,
@@ -182,12 +189,15 @@ onTap: () async {
                   ),
                 );
               },
-              child: Card(color: Styles.of(context).darkblue,
+              child: Card(elevation: 9,
+                color: Styles.of(context).darkblue,
                 child: ListTile(
-                  title: Text(chat.lastMessage.message,
+                  title:   Text(chat.character.firstName.toString(),
                       style: const TextStyle(color: Colors.white)),
                   leading: Image.network(chat.character.imageUrl.toString()),
-                  subtitle: Text(chat.character.firstName.toString()),
+                  subtitle: Text("${chat.lastMessage.message}....",
+                      style: const TextStyle(color: Colors.grey, )),
+               
                 ),
               ),
             );

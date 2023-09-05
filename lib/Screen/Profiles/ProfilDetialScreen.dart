@@ -16,12 +16,19 @@ Widget build(BuildContext context) {
   return AppScaffold(
     selectedPage: ProfilScreen.pageName,
     
-    child: Container(color:Styles.of(context).darkblue ,
-      child: SfPdfViewer.asset(enableDoubleTapZooming: true,
-        'assets/cv.pdf',
-        key: _pdfViewerKey,
-      ),
-    ),
+child: 
+        Container(
+          height: MediaQuery.of(context).size.width * 2,
+          color:Styles.of(context).darkblue ,
+          child: SfPdfViewer.asset(enableDoubleTapZooming: true,
+            'assets/cv.pdf',
+            key: _pdfViewerKey,
+            pageLayoutMode: PdfPageLayoutMode.continuous
+          ),
+        ),
+       
+      
+    
   );
 }
 }

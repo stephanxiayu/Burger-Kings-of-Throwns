@@ -69,15 +69,16 @@ class MyApp extends StatelessWidget {
    Utils(
       globalController: Provider.of<GlobalController>(context),
       child:
-      MaterialApp(debugShowCheckedModeBanner: false,
+      MaterialApp(
+        debugShowCheckedModeBanner: false,
+       
       initialRoute: initialPage,
         onGenerateRoute: AppRouter.generateRoute,
         locale: Provider.of<GlobalController>(context).locale,
         title: 'My one and only Royal Experience is Burger Kind',
-        theme: ThemeData.dark(
-         
-         
-        ),
+       theme: ThemeData.dark().copyWith(
+        canvasColor: Styles.of(context).darkblue,
+      ),
         // home:   MyHomePage(),
       ),
     );

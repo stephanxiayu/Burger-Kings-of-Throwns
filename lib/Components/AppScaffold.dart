@@ -35,6 +35,8 @@ class AppScaffold extends StatelessWidget {
 
 
     return Scaffold(
+      
+       resizeToAvoidBottomInset: true,
         key: globalKey,
       backgroundColor: Styles.of(context).darkblue,
         appBar: NewAppbar(selectedPage: selectedPage),
