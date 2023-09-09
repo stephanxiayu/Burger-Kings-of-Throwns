@@ -1,5 +1,3 @@
-
-
 import 'dart:math';
 
 import 'package:burgerking_apitest/Components/shimmer.dart';
@@ -33,13 +31,14 @@ class _HomeScreenState extends State<HomeScreen> {
   List<SwipeItem> swipeItems = <SwipeItem>[];
   MatchEngine? matchEngine;
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
- ConfettiController? _confettiController;
+  ConfettiController? _confettiController;
 
   @override
   void initState() {
     super.initState();
     homeScreenController.fetchData();
-    _confettiController = ConfettiController(duration: const Duration(seconds: 6));
+    _confettiController =
+        ConfettiController(duration: const Duration(seconds: 6));
   }
 
   @override
@@ -50,15 +49,17 @@ class _HomeScreenState extends State<HomeScreen> {
         future: homeScreenController.fetchData(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return AppScaffold(selectedPage: HomeScreen.pageName,
-              child: ShimmerLoading()); // Or any other loading widget
+            return AppScaffold(
+                selectedPage: HomeScreen.pageName,
+                child: ShimmerLoading()); // Or any other loading widget
           }
 
           if (snapshot.hasError) {
             return Text('Error: ${snapshot.error}');
           }
 
-          return AppScaffold(selectedPage: HomeScreen.pageName,
+          return AppScaffold(
+            selectedPage: HomeScreen.pageName,
             key: _scaffoldKey,
             child: Stack(children: [
               SizedBox(
@@ -76,11 +77,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                   .swipeItems[index].content.imageUrl,
                               height: screenHeight *
                                   3 /
-                                  3, // This makes it full screen height, adjust accordingly
+                                  3, 
                               fit: BoxFit.cover,
                             ),
 
-                            // Gradient overlay at the bottom 1/5 of the image
+                       
                             Positioned.fill(
                               child: DecoratedBox(
                                 decoration: BoxDecoration(
@@ -94,7 +95,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     stops: const [
                                       0.1,
                                       1.0
-                                    ], // this will make gradient start at 80% from top and end at the bottom
+                                    ],
                                   ),
                                 ),
                               ),
@@ -171,7 +172,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               top: 50.0,
                               left: 0,
                               right: 0,
-                              child:   homeScreenController.   actionMessage == null
+                              child: homeScreenController.actionMessage == null
                                   ? Container() // Empty container if no action
                                   : Center(
                                       child: Container(
@@ -202,7 +203,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                               BorderRadius.circular(5.0),
                                         ),
                                         child: Text(
-                                          homeScreenController.     actionMessage!,
+                                          homeScreenController.actionMessage!,
                                           style: TextStyle(
                                             fontSize: 24.0,
                                             color: homeScreenController
@@ -220,13 +221,15 @@ class _HomeScreenState extends State<HomeScreen> {
                                       ),
                                     ),
                             ),
-                            
                           ],
                         ));
                   },
                   onStackFinished: () {
                     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                      content: Text("Game OVER! Du möchtest mehr Royales Erlebnis, dann geh zu Burger King in deiner Nähne", style: TextStyle(fontSize: 20),),
+                      content: Text(
+                        "Game OVER! Du möchtest mehr Royales Erlebnis, dann geh zu Burger King in deiner Nähne",
+                        style: TextStyle(fontSize: 20),
+                      ),
                       duration: Duration(seconds: 20),
                     ));
                   },
@@ -265,12 +268,22 @@ class _HomeScreenState extends State<HomeScreen> {
                           onPressed: () {
                             homeScreenController.matchEngine!.currentItem
                                 ?.superLike();
-                                _confettiController?.play();
-ScaffoldMessenger.of(context).showSnackBar(  
-                            const SnackBar(backgroundColor: Colors.transparent,elevation: 9,padding: EdgeInsets.only(bottom: 200),
-                      content: Center(child:  Text(" MATCH ", style: TextStyle(fontSize: 40, backgroundColor: Colors.transparent, color: Colors.blue),)),
-                      duration: Duration(seconds: 2),
-                    ));
+                            _confettiController?.play();
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(const SnackBar(
+                              backgroundColor: Colors.transparent,
+                              elevation: 9,
+                              padding: EdgeInsets.only(bottom: 200),
+                              content: Center(
+                                  child: Text(
+                                " MATCH ",
+                                style: TextStyle(
+                                    fontSize: 40,
+                                    backgroundColor: Colors.transparent,
+                                    color: Colors.blue),
+                              )),
+                              duration: Duration(seconds: 2),
+                            ));
                           },
                           icon: const Icon(Icons.star,
                               color: Colors.white, size: 30.0),
@@ -281,17 +294,26 @@ ScaffoldMessenger.of(context).showSnackBar(
                         radius: 30,
                         backgroundColor: Colors.green,
                         child: IconButton(
-                          onPressed: () async{
+                          onPressed: () async {
                             homeScreenController.matchEngine!.currentItem
                                 ?.like();
-                          _confettiController?.play();
-                     
-                          ScaffoldMessenger.of(context).showSnackBar(  
-                            const SnackBar(backgroundColor: Colors.transparent,elevation: 9,padding: EdgeInsets.only(bottom: 200),
-                      content: Center(child:  Text(" MATCH", style: TextStyle(fontSize: 40, backgroundColor: Colors.transparent, color: Colors.green),)),
-                      duration: Duration(seconds: 2),
-                    ));
+                            _confettiController?.play();
 
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(const SnackBar(
+                              backgroundColor: Colors.transparent,
+                              elevation: 9,
+                              padding: EdgeInsets.only(bottom: 200),
+                              content: Center(
+                                  child: Text(
+                                " MATCH",
+                                style: TextStyle(
+                                    fontSize: 40,
+                                    backgroundColor: Colors.transparent,
+                                    color: Colors.green),
+                              )),
+                              duration: Duration(seconds: 2),
+                            ));
                           },
                           icon: const Icon(Icons.favorite,
                               color: Colors.white, size: 30.0),

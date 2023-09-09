@@ -32,6 +32,7 @@ class AppScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     GlobalController globalController = Provider.of<GlobalController>(context);
     GlobalKey<ScaffoldState> globalKey = GlobalKey<ScaffoldState>();
+GlobalKey navKey = GlobalKey();
 
 
     return Scaffold(
@@ -41,7 +42,8 @@ class AppScaffold extends StatelessWidget {
       backgroundColor: Styles.of(context).darkblue,
         appBar: NewAppbar(selectedPage: selectedPage),
         body: child,
-        bottomNavigationBar: NaviBar(selectedPage: selectedPage));
+        bottomNavigationBar: NaviBar(key: navKey,
+          selectedPage: selectedPage));
         
   }
 }

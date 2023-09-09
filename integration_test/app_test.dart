@@ -51,7 +51,7 @@ await tester.tap(find.byType(SVGAppBarItem).first);
 
 final target = find.descendant(
   of: find.byType(NavigationBar),
-  matching: find.byKey(Key('chatNavBarItem')),
+  matching: find.byKey(const Key('chatNavBarItem')),
 ).first;
 await tester.tap(target);
  await tester.pump(const Duration(seconds: 2));
@@ -63,7 +63,7 @@ await tester.pumpAndSettle();
 // Navigate to ProfileScreen
 final profileTarget = find.descendant(
   of: find.byType(NavigationBar),
-  matching: find.byKey(Key('profileNavBarItem')),
+  matching: find.byKey(const Key('profileNavBarItem')),
 ).first;
 await tester.ensureVisible(profileTarget);
 await tester.tap(profileTarget);
@@ -76,7 +76,7 @@ await tester.pump(const Duration(seconds: 2));
 // Navigate back to HomeScreen
 final homeTarget = find.descendant(
   of: find.byType(NavigationBar),
-  matching: find.byKey(Key('homeNavBarItem')),
+  matching: find.byKey(const Key('homeNavBarItem')),
 ).first;
 await tester.ensureVisible(homeTarget);
 await tester.tap(homeTarget);
@@ -86,7 +86,7 @@ await tester.pumpAndSettle();
 
 final target2 = find.descendant(
   of: find.byType(NavigationBar),
-  matching: find.byKey(Key('chatNavBarItem')),
+  matching: find.byKey(const Key('chatNavBarItem')),
 ).first;
 await tester.tap(target2);
 await tester.pumpAndSettle();
@@ -96,12 +96,12 @@ final chatItem = find.byType(ListTile).first; // Replace ListTile with your cust
 await tester.tap(chatItem);
 await tester.pumpAndSettle();
 print("About to tap on message field.");
-final messageField = find.byKey(Key('chatMessageField'));
+final messageField = find.byKey(const Key('chatMessageField'));
 await tester.enterText(messageField, 'hello');
 print("Text entered.");
 
 print("About to send message.");
-await tester.tap(find.byKey(Key('sendIconButton')));
+await tester.tap(find.byKey(const Key('sendIconButton')));
 await tester.pumpAndSettle();
 
 await tester.pumpAndSettle();
@@ -116,7 +116,7 @@ await tester.pumpAndSettle();
 print("About to navigate back to home.");
 final targetHome = find.descendant(
   of: find.byType(NavigationBar),
-  matching: find.byKey(Key('homeNavBarItem')),
+  matching: find.byKey(const Key('homeNavBarItem')),
 );tester.ensureVisible(targetHome);
 await tester.tap(targetHome);
 
@@ -129,10 +129,10 @@ print("Navigated back to home.");
 
 // Navigate to ChatScreen again using NavigationBar
 await tester.tap(target2);
-expect(find.byKey(Key('chatNavBarItem')), findsWidgets);
+expect(find.byKey(const Key('chatNavBarItem')), findsWidgets);
 
 await tester.pumpAndSettle();
-await tester.drag(find.byKey(Key('chatListView')), Offset(0, -300));
+await tester.drag(find.byKey(const Key('chatListView')), const Offset(0, -300));
 print("chatListView founded...");
 
 
@@ -141,7 +141,7 @@ int maxScrolls = 10; // Define the maximum number of scrolls
 int scrollAttempts = 0; // Initialize scroll attempts counter
 
 while (find.text('hello').evaluate().isEmpty && scrollAttempts < maxScrolls) {
-  await tester.drag(find.byKey(Key('chatListView')), Offset(0, -100)); // smaller increments
+  await tester.drag(find.byKey(const Key('chatListView')), const Offset(0, -100)); // smaller increments
   await tester.pumpAndSettle();
   scrollAttempts++;
 }
