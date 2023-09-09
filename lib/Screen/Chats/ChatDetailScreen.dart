@@ -114,6 +114,7 @@ void addChatMessage() async {
             width: MediaQuery.of(context).size.width * 0.7,
             child: SingleChildScrollView(
               child: TextField(
+                key: Key('chatMessageField'),
                 focusNode: textFocus,
                 controller: textEditingController,
                 cursorColor: Colors.green, // Custom cursor color
@@ -134,6 +135,7 @@ void addChatMessage() async {
             ),
           ),
           IconButton(
+            key: Key('sendIconButton'),
             icon: const Icon(Icons.send),
             onPressed: addChatMessage,
           ),

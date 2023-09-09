@@ -1,4 +1,3 @@
-
 import 'package:burgerking_apitest/Components/SVG_item.dart';
 import 'package:burgerking_apitest/Screen/Chats/ChatScreens.dart';
 import 'package:burgerking_apitest/Screen/HomeScreen/HomeScreen.dart';
@@ -17,56 +16,46 @@ class NaviBar extends StatelessWidget {
     this.selectedPage,
   }) : super(key: key);
 
-
-
   @override
   Widget build(BuildContext context) {
     GlobalController globalController = Provider.of<GlobalController>(context);
 
     return NavigationBar(
+         key: Key('chatNavBarItem'),
       labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
       backgroundColor: Styles.of(context).darkblue,
       height: 70,
       destinations: [
-               Card(
-          
-        
-        
-      
+        Card(
           child: SVGAppBarItem(
+            key: const Key('homeNavBarItem'),
             pageName: HomeScreen.pageName,
             iconPath: 'assets/SVG/tinder2.svg',
             activeIconPath: 'assets/SVG/tinder.svg',
             isPressed: selectedPage == HomeScreen.pageName,
-            title:  "Home",
+            title: "Home",
             activeTitle: "Home",
           ),
         ),
-                Card(
-          
-        
-        
-         
+        Card(
           child: SVGAppBarItem(
+            key: const Key('chatNavBarItem'),
             pageName: ChatScreen.pageName,
-           iconPath: 'assets/SVG/chat.svg',
+            iconPath: 'assets/SVG/chat.svg',
             activeIconPath: 'assets/SVG/chat.svg',
             isPressed: selectedPage == ChatScreen.pageName,
-            title:  "Chats",
+            title: "Chats",
             activeTitle: "Chats",
           ),
         ),
-                 Card(
-          
-        
-        
-      
+        Card(
           child: SVGAppBarItem(
+            key: const Key('profileNavBarItem'),
             pageName: ProfilScreen.pageName,
             iconPath: 'assets/SVG/profil.svg',
             activeIconPath: 'assets/SVG/profil.svg',
             isPressed: selectedPage == ProfilScreen.pageName,
-            title:  "Profile",
+            title: "Profile",
             activeTitle: "Profile",
           ),
         ),

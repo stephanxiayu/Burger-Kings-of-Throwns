@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../Service/DataModels/onGoungChat.dart';
+
 class ChatScreen extends StatefulWidget {
   static const String pageName = "Deine Chats";
 
@@ -175,6 +176,7 @@ onTap: () async {
   flex: 7,
   child: ongoingChats.isNotEmpty
       ? ListView.builder(
+         key: Key('chatListView'),
           itemCount: ongoingChats.length,
           itemBuilder: (context, index) {
             final chat = ongoingChats[index];

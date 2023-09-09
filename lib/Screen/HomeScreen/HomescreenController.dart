@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'dart:math';
-
+import './HomescreenController.dart' as flags;
 import 'package:burgerking_apitest/Components/Content.dart';
 import 'package:burgerking_apitest/Screen/HomeScreen/HomeScreen.dart';
 import 'package:burgerking_apitest/Service/DataModels/charktermode_class.dart';
@@ -37,6 +37,11 @@ class HomeScreenController extends ChangeNotifier {
   }
 
   Future<void> fetchData() async {
+    
+    
+  //    if (flags.isInTestMode==true) {
+  //   await Future.delayed(Duration(seconds: 2));
+  // }
     await getAllCharacters(); // Make sure this function returns a Future if it's async
     data = characterData.cast<CharacterModel>();
 
