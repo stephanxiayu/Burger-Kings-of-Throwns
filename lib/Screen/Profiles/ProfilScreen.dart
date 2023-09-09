@@ -71,7 +71,14 @@ class _ProfilScreenState extends State<ProfilScreen> {
               ),
               ),
             ),
-
+const Padding(
+  padding: EdgeInsets.all(20.0),
+  child:   Text("daStephan 39 Software DudeUIBE PekingWohnt in Berlinta"),
+), 
+const Padding(
+  padding: EdgeInsets.all(20.0),
+  child:   Text("🌏🗾🏞️🏝️🌝🧑‍💻🏋️🏃🀄 Back in good old Berlin... 😊 Honesty in Internet: I am 1,78 cm tall but the Chinese government🇨🇳 has proven 1,80 cm with stamp 😋☝️🤣"),
+)
           // ElevatedButton(
           //   child: Text("Pick Image"),
           //   onPressed: () async {

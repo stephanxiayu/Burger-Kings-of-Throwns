@@ -1,11 +1,12 @@
 import 'dart:math';
 
 import 'package:burgerking_apitest/Components/shimmer.dart';
+import 'package:burgerking_apitest/Screen/DetialScreen/DetailScreen.dart';
 import 'package:burgerking_apitest/Screen/HomeScreen/HomescreenController.dart';
 import 'package:burgerking_apitest/Service/DataModels/charktermode_class.dart';
 import 'package:burgerking_apitest/Components/AppScaffold.dart';
 
-import 'package:burgerking_apitest/Screen/DetailScreen/DetailScreen.dart';
+
 import 'package:confetti/confetti.dart';
 
 import 'package:flutter/material.dart';
@@ -134,7 +135,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       Navigator.of(context).push(
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  DetailScreen(
+                                                  DetailPage(
                                                     description:
                                                         homeScreenController
                                                             .data![index]

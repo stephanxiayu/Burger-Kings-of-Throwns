@@ -8,8 +8,8 @@ class ShimmerLoading extends StatelessWidget {
     return ListView.builder(
       itemCount: 10, // This can be however many skeleton items you want to show
       itemBuilder: (_, __) => Shimmer.fromColors(
-        baseColor: Colors.grey[300]!,
-        highlightColor: Colors.grey[100]!,
+        baseColor: Colors.grey[800]!,
+        highlightColor: Colors.grey[500]!,
         child: ShimmerCard(),
       ),
     );
@@ -27,7 +27,7 @@ class ShimmerCard extends StatelessWidget {
           Container(
             width: 48.0,
             height: 48.0,
-            color: Colors.white,
+            color: Colors.grey.shade800,
           ),
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 8.0),
@@ -37,6 +37,7 @@ class ShimmerCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Container(
+                  
                   width: double.infinity,
                   height: 8.0,
                   color: Colors.white,
