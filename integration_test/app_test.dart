@@ -2,6 +2,7 @@ import 'package:burgerking_apitest/Components/SVG_item.dart';
 import 'package:burgerking_apitest/Screen/Chats/ChatDetailScreen.dart';
 import 'package:burgerking_apitest/Screen/Chats/ChatScreens.dart';
 import 'package:burgerking_apitest/Screen/DetailScreen/DetailScreen.dart';
+import 'package:burgerking_apitest/Screen/DetialScreen/DetailScreen.dart';
 import 'package:burgerking_apitest/Screen/HomeScreen/HomeScreen.dart';
 import 'package:burgerking_apitest/Screen/Profiles/ProfilScreen.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +31,7 @@ void main() {
       // Tap the info button to navigate to DetailScreen
       await tester.tap(find.byIcon(Icons.info).first);
       await tester.pumpAndSettle();
-      expect(find.byType(DetailScreen), findsOneWidget);
+      expect(find.byType(DetailPage), findsOneWidget);
 
       // Going back to the HomeScreen
       await tester.pageBack();
