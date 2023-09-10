@@ -1,6 +1,7 @@
 
 
 import 'package:burgerking_apitest/Components/AppScaffold.dart';
+import 'package:burgerking_apitest/Components/profilcomponent.dart';
 
 import 'package:burgerking_apitest/Screen/Profiles/ProfilDetialScreen.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +9,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class ProfilScreen extends StatefulWidget {
-  ProfilScreen({super.key});
+  const ProfilScreen({super.key});
   static const String pageName = "Profil des Entwicklers";
 
   @override
@@ -16,13 +17,7 @@ class ProfilScreen extends StatefulWidget {
 }
 
 class _ProfilScreenState extends State<ProfilScreen> {
-  // XFile? _imageFile;  // Change PickedFile? to XFile?
 
-  // Future<XFile?> _getImageFromGallery() async {
-  //   final picker = ImagePicker();
-  //   final pickedFile = await picker.pickImage(source: ImageSource.gallery);
-  //   return pickedFile;
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -71,13 +66,15 @@ class _ProfilScreenState extends State<ProfilScreen> {
               ),
               ),
             ),
+            const ProfilComponent(name: "Stephan",age: "39", work: 'Software Dude', uni: 'UIBE Peking', wohnen: 'Wohnt in Berlin',),
+
 const Padding(
   padding: EdgeInsets.all(20.0),
-  child:   Text("daStephan 39 Software DudeUIBE PekingWohnt in Berlinta"),
-), 
+  child:   Text("🌏🗾🏞️🏝️🌝🧑‍💻🏋️🏃🀄 Back in good old Berlin... "),
+),
 const Padding(
   padding: EdgeInsets.all(20.0),
-  child:   Text("🌏🗾🏞️🏝️🌝🧑‍💻🏋️🏃🀄 Back in good old Berlin... 😊 Honesty in Internet: I am 1,78 cm tall but the Chinese government🇨🇳 has proven 1,80 cm with stamp 😋☝️🤣"),
+  child:   Text("😊 Honesty in Internet: I am 1,78 cm tall but the Chinese government🇨🇳 has proven 1,80 cm with stamp 😋☝️🤣"),
 )
           // ElevatedButton(
           //   child: Text("Pick Image"),

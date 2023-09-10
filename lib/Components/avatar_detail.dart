@@ -25,18 +25,19 @@ class CharacterCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card( color: Styles.of(context).darkblue,
-    shadowColor: Colors.red,
+    shadowColor: Colors.white,
       elevation: 5.0,
       margin: const EdgeInsets.all(15.0),
       child: Column(
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Container(decoration: BoxDecoration(border: Border.all(color: Colors.red)),
+            child: Container(width: double.infinity,
+              decoration: BoxDecoration(border: Border.all(color: Colors.white)),
               child: Image.network(imageUrl, fit: BoxFit.cover)),
           ),
           ListTile(
-            title: Text("Character Detail"),
+            title: const Text("King des Monats"),
             subtitle: Text(fullName),
           ),
           Padding(
@@ -45,15 +46,15 @@ class CharacterCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
              
-                SizedBox(height: 5),
+                const SizedBox(height: 5),
                 Text('First Name: $firstName'),
-                SizedBox(height: 5),
+                const SizedBox(height: 5),
                 Text('Last Name: $lastName'),
-                SizedBox(height: 5),
+                const SizedBox(height: 5),
                 Text('Full Name: $fullName'),
-                SizedBox(height: 5),
+                const SizedBox(height: 5),
                 Text('Title: $title'),
-                SizedBox(height: 5),
+                const SizedBox(height: 5),
                 Text('Family: $family'),
               ],
             ),

@@ -14,7 +14,7 @@ class ChatDetailScreen extends StatefulWidget {
    final String characterId;  // This is the unique ID for the character
   final String url;
 
-  ChatDetailScreen({Key? key, required this.characterId, required this.url }) : super(key: key);
+  const ChatDetailScreen({Key? key, required this.characterId, required this.url }) : super(key: key);
 
   @override
   _ChatDetailScreenState createState() => _ChatDetailScreenState();
@@ -95,7 +95,7 @@ void addChatMessage() async {
               },
             ),
           ),
-          Expanded(
+          Expanded(flex: 2,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -114,7 +114,7 @@ void addChatMessage() async {
             width: MediaQuery.of(context).size.width * 0.7,
             child: SingleChildScrollView(
               child: TextField(
-                key: Key('chatMessageField'),
+                key: const Key('chatMessageField'),
                 focusNode: textFocus,
                 controller: textEditingController,
                 cursorColor: Colors.green, // Custom cursor color
@@ -135,7 +135,7 @@ void addChatMessage() async {
             ),
           ),
           IconButton(
-            key: Key('sendIconButton'),
+            key: const Key('sendIconButton'),
             icon: const Icon(Icons.send),
             onPressed: addChatMessage,
           ),

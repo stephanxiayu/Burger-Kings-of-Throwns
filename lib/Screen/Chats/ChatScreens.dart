@@ -205,7 +205,7 @@ onTap: () async {
             );
           },
         )
-      : const Center(child: Text('No ongoing chats.')),
+      : const Center(child: Text('like and chatte with a King of the months')),
 ),
 
 
