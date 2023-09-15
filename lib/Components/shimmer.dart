@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
 class ShimmerLoading extends StatelessWidget {
+  const ShimmerLoading({super.key});
+
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -10,13 +12,15 @@ class ShimmerLoading extends StatelessWidget {
       itemBuilder: (_, __) => Shimmer.fromColors(
         baseColor: Colors.grey[800]!,
         highlightColor: Colors.grey[500]!,
-        child: ShimmerCard(),
+        child: const ShimmerCard(),
       ),
     );
   }
 }
 
 class ShimmerCard extends StatelessWidget {
+  const ShimmerCard({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Padding(

@@ -1,10 +1,12 @@
-import 'package:burgerking_apitest/Components/NavigationBar.dart';
-import 'package:burgerking_apitest/Components/NewAppbar.dart';
+import 'package:burgerking_apitest/Components/navigation_bar.dart';
+import 'package:burgerking_apitest/Components/new_appbar.dart';
 
-import 'package:burgerking_apitest/Shared/globalContraoller.dart';
+
+
+
 import 'package:burgerking_apitest/Shared/styles.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+
 
 class AppScaffold extends StatelessWidget {
   final Widget? child;
@@ -30,7 +32,7 @@ class AppScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    GlobalController globalController = Provider.of<GlobalController>(context);
+
     GlobalKey<ScaffoldState> globalKey = GlobalKey<ScaffoldState>();
 GlobalKey navKey = GlobalKey();
 

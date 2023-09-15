@@ -44,7 +44,7 @@ class BaseApi {
         throw Exception("Failed to fetch list with statusCode: ${response.statusCode}");
       }
     } catch (e) {
-      print("Failed to fetch list with error: $e");
+     
       rethrow;
     }
   }

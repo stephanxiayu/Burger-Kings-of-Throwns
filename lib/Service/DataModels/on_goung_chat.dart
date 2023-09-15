@@ -1,5 +1,6 @@
 import 'package:burgerking_apitest/Service/DataModels/charktermode_class.dart';
-import 'package:burgerking_apitest/Service/DataModels/chatScreenModel.dart';
+import 'package:burgerking_apitest/Service/DataModels/chatscreen_model.dart';
+
 
 class OngoingChat {
   final CharacterModel character;

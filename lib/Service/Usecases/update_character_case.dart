@@ -13,9 +13,9 @@ class UpdateCharacterCase
   UpdateCharacterCase(this._characterModelRepo);
 
   @override
-  Future<Either<ApiRequestFailure, CharacterModel>> call(CharacterModel character) {
+  Future<Either<ApiRequestFailure, CharacterModel>> call(CharacterModel params) {
     // You'll likely need the character's ID to update it, so ensure that the ID is available in the model.
-    return _characterModelRepo.updateCharacter(character.id, character);
+    return _characterModelRepo.updateCharacter(params.id, params);
   }
 
   static UpdateCharacterCase get it => getIt<UpdateCharacterCase>();

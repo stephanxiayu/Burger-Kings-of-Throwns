@@ -1,4 +1,4 @@
-import 'package:burgerking_apitest/Components/AppScaffold.dart';
+
 import 'package:burgerking_apitest/Shared/styles.dart';
 
 import 'package:chat_bubbles/chat_bubbles.dart';
@@ -7,7 +7,7 @@ import 'dart:convert';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../Service/DataModels/chatScreenModel.dart';
+import '../../Service/DataModels/chatscreen_model.dart';
 
 class ChatDetailScreen extends StatefulWidget {
   static const String pageName = "Chat";
@@ -17,6 +17,7 @@ class ChatDetailScreen extends StatefulWidget {
   const ChatDetailScreen({Key? key, required this.characterId, required this.url }) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _ChatDetailScreenState createState() => _ChatDetailScreenState();
 }
 
@@ -32,7 +33,7 @@ FocusNode textFocus = FocusNode();
     
     _loadChatData();
     textFocus.addListener(() {
-        print("Has focus: ${textFocus.hasFocus}");
+     
     });
   }
   @override

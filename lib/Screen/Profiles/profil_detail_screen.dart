@@ -1,5 +1,5 @@
-import 'package:burgerking_apitest/Components/AppScaffold.dart';
-import 'package:burgerking_apitest/Screen/Profiles/ProfilScreen.dart';
+import 'package:burgerking_apitest/Components/app_scaffold.dart';
+import 'package:burgerking_apitest/Screen/Profiles/profil_screen.dart';
 import 'package:burgerking_apitest/Shared/styles.dart';
 import 'package:flutter/material.dart';
 

@@ -1,12 +1,14 @@
 
 
-import 'package:burgerking_apitest/Components/AppScaffold.dart';
+
 import 'package:burgerking_apitest/Components/profilcomponent.dart';
 
-import 'package:burgerking_apitest/Screen/Profiles/ProfilDetialScreen.dart';
+import 'package:burgerking_apitest/Screen/Profiles/profil_detail_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
+
 import 'package:percent_indicator/circular_percent_indicator.dart';
+
+import '../../Components/app_scaffold.dart';
 
 class ProfilScreen extends StatefulWidget {
   const ProfilScreen({super.key});

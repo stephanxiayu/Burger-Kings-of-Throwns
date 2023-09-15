@@ -1,10 +1,11 @@
-import 'dart:math';
+
 
 import 'package:burgerking_apitest/Components/shimmer.dart';
-import 'package:burgerking_apitest/Screen/DetialScreen/DetailScreen.dart';
-import 'package:burgerking_apitest/Screen/HomeScreen/HomescreenController.dart';
+import 'package:burgerking_apitest/Screen/DetialScreen/detail_screen.dart';
+
+import 'package:burgerking_apitest/Screen/HomeScreen/home_screen_controller.dart';
 import 'package:burgerking_apitest/Service/DataModels/charktermode_class.dart';
-import 'package:burgerking_apitest/Components/AppScaffold.dart';
+import 'package:burgerking_apitest/Components/app_scaffold.dart';
 
 
 import 'package:confetti/confetti.dart';
@@ -31,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
   String? actionMessage;
   List<SwipeItem> swipeItems = <SwipeItem>[];
   MatchEngine? matchEngine;
-  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
+ final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
   ConfettiController? _confettiController;
 
   @override
@@ -50,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
         future: homeScreenController.fetchData(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return AppScaffold(
+            return const AppScaffold(
                 selectedPage: HomeScreen.pageName,
                 child: ShimmerLoading()); // Or any other loading widget
           }

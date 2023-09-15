@@ -2,8 +2,8 @@
 
 
 
-import 'package:burgerking_apitest/Components/AppScaffold.dart';
-import 'package:burgerking_apitest/Components/NewAppbar.dart';
+
+import 'package:burgerking_apitest/Components/app_scaffold.dart';
 import 'package:burgerking_apitest/Components/avatar_detail.dart';
 import 'package:flutter/material.dart';
 

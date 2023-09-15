@@ -1,10 +1,8 @@
-import 'package:burgerking_apitest/Components/SVG_item.dart';
-import 'package:burgerking_apitest/Screen/Chats/ChatDetailScreen.dart';
-import 'package:burgerking_apitest/Screen/Chats/ChatScreens.dart';
-import 'package:burgerking_apitest/Screen/DetailScreen/DetailScreen.dart';
-import 'package:burgerking_apitest/Screen/DetialScreen/DetailScreen.dart';
-import 'package:burgerking_apitest/Screen/HomeScreen/HomeScreen.dart';
-import 'package:burgerking_apitest/Screen/Profiles/ProfilScreen.dart';
+import 'package:burgerking_apitest/Components/svg_item.dart';
+
+import 'package:burgerking_apitest/Screen/DetialScreen/detail_screen.dart';
+import 'package:burgerking_apitest/Screen/HomeScreen/home_screem.dart';
+import 'package:burgerking_apitest/Screen/Profiles/profil_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
@@ -96,17 +94,15 @@ await tester.pumpAndSettle();
 final chatItem = find.byType(ListTile).first; // Replace ListTile with your custom chat item widget if needed
 await tester.tap(chatItem);
 await tester.pumpAndSettle();
-print("About to tap on message field.");
+
 final messageField = find.byKey(const Key('chatMessageField'));
 await tester.enterText(messageField, 'hello');
-print("Text entered.");
 
-print("About to send message.");
 await tester.tap(find.byKey(const Key('sendIconButton')));
 await tester.pumpAndSettle();
 
 await tester.pumpAndSettle();
-print("Message sent.");
+
 
 await tester.tap(find.byType(BackButton));
 await tester.pumpAndSettle();
@@ -114,7 +110,7 @@ await tester.pumpAndSettle();
 // Navigator.of(tester.element(find.byType(ChatDetailScreen))).pop();
 // await tester.pumpAndSettle();
 
-print("About to navigate back to home.");
+
 final targetHome = find.descendant(
   of: find.byType(NavigationBar),
   matching: find.byKey(const Key('homeNavBarItem')),
@@ -125,7 +121,7 @@ expect(targetHome, findsOneWidget);
 
 
 await tester.pumpAndSettle();
-print("Navigated back to home.");
+
 
 
 // Navigate to ChatScreen again using NavigationBar
@@ -134,7 +130,7 @@ expect(find.byKey(const Key('chatNavBarItem')), findsWidgets);
 
 await tester.pumpAndSettle();
 await tester.drag(find.byKey(const Key('chatListView')), const Offset(0, -300));
-print("chatListView founded...");
+
 
 
 // Check if "hello" message exists

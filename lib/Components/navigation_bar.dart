@@ -1,27 +1,27 @@
-import 'package:burgerking_apitest/Components/SVG_item.dart';
-import 'package:burgerking_apitest/Screen/Chats/ChatScreens.dart';
-import 'package:burgerking_apitest/Screen/HomeScreen/HomeScreen.dart';
-import 'package:burgerking_apitest/Screen/Profiles/ProfilScreen.dart';
-import 'package:burgerking_apitest/Shared/globalContraoller.dart';
+import 'package:burgerking_apitest/Components/svg_item.dart';
+import 'package:burgerking_apitest/Screen/Chats/chat_screen.dart';
+import 'package:burgerking_apitest/Screen/HomeScreen/home_screem.dart';
+import 'package:burgerking_apitest/Screen/Profiles/profil_screen.dart';
+
 import 'package:burgerking_apitest/Shared/styles.dart';
 
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+
 
 class NaviBar extends StatelessWidget {
   final String? selectedPage;
 
-  NaviBar({
+  const NaviBar({
     Key? key,
     this.selectedPage,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    GlobalController globalController = Provider.of<GlobalController>(context);
+
 
     return NavigationBar(
-         key: Key('chatNavBarItem'),
+         key: const Key('chatNavBarItem'),
       labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
       backgroundColor: Styles.of(context).darkblue,
       height: 70,

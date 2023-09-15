@@ -1,14 +1,15 @@
 
 
-import 'package:burgerking_apitest/Screen/Chats/ChatController.dart';
-import 'package:burgerking_apitest/Screen/Chats/ChatScreens.dart';
-import 'package:burgerking_apitest/Screen/HomeScreen/HomeScreen.dart';
-import 'package:burgerking_apitest/Screen/HomeScreen/HomescreenController.dart';
-import 'package:burgerking_apitest/Screen/NavigationErrorPage/NavigationErrorPage.dart';
-import 'package:burgerking_apitest/Screen/Profiles/ProfilScreen.dart';
-import 'package:burgerking_apitest/Screen/Profiles/profilController.dart';
 
-import 'package:burgerking_apitest/Shared/globalContraoller.dart';
+import 'package:burgerking_apitest/Screen/Chats/chat_controller.dart';
+import 'package:burgerking_apitest/Screen/Chats/chat_screen.dart';
+import 'package:burgerking_apitest/Screen/HomeScreen/home_screem.dart';
+import 'package:burgerking_apitest/Screen/HomeScreen/home_screen_controller.dart';
+import 'package:burgerking_apitest/Screen/NavigationErrorPage/navigation_error_page.dart';
+import 'package:burgerking_apitest/Screen/Profiles/profil_screen.dart';
+import 'package:burgerking_apitest/Screen/Profiles/profil_controller.dart';
+
+import 'package:burgerking_apitest/Shared/global_contraoller.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -32,7 +33,7 @@ class AppRouter {
             create: (context) => ChatController(
               Provider.of<GlobalController>(context, listen: false),
             ),
-            child: ChatScreen(),
+            child: const ChatScreen(),
           ),
         );
 
@@ -42,7 +43,7 @@ class AppRouter {
             create: (context) => ProfilController(
               Provider.of<GlobalController>(context, listen: false),
             ),
-            child: ProfilScreen(),
+            child: const ProfilScreen(),
           ),
         );
 

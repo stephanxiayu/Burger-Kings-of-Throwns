@@ -1,24 +1,27 @@
 
 import 'dart:convert';
 
-import 'package:burgerking_apitest/Components/AppScaffold.dart';
-import 'package:burgerking_apitest/Screen/Chats/ChatDetailScreen.dart';
-import 'package:burgerking_apitest/Service/DataModels/Items.dart';
+
+import 'package:burgerking_apitest/Components/app_scaffold.dart';
+import 'package:burgerking_apitest/Screen/Chats/chat_detail_screen.dart';
+
+import 'package:burgerking_apitest/Service/DataModels/items.dart';
 import 'package:burgerking_apitest/Service/DataModels/charktermode_class.dart';
-import 'package:burgerking_apitest/Service/DataModels/chatScreenModel.dart';
+import 'package:burgerking_apitest/Service/DataModels/chatscreen_model.dart';
 import 'package:burgerking_apitest/Shared/styles.dart';
 import 'package:flutter/material.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../Service/DataModels/onGoungChat.dart';
+import '../../Service/DataModels/on_goung_chat.dart';
 
 class ChatScreen extends StatefulWidget {
   static const String pageName = "Deine Chats";
 
-  ChatScreen({Key? key}) : super(key: key);
+  const ChatScreen({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _ChatScreenState createState() => _ChatScreenState();
 }
 
@@ -44,7 +47,7 @@ Future<List<ChatMessage>> _getChatsForCharacter(String characterId) async {
     .map((chatData) => ChatMessage.fromJson(jsonDecode(chatData)))
     .where((chat) => chat.id == characterId)
     .toList();
-  print("Fetched chats for character $characterId: $chats");
+
   return chats;
 }
 
@@ -109,7 +112,7 @@ void initState() {
     return 
 GestureDetector(
 onTap: () async {
-  print("Fetching chats for character: ${item.id.toString()}");
+
   final chats = await _getChatsForCharacter(item.id.toString());
 
   if (chats.isNotEmpty) {
@@ -176,7 +179,7 @@ onTap: () async {
   flex: 7,
   child: ongoingChats.isNotEmpty
       ? ListView.builder(
-         key: Key('chatListView'),
+         key: const Key('chatListView'),
           itemCount: ongoingChats.length,
           itemBuilder: (context, index) {
             final chat = ongoingChats[index];

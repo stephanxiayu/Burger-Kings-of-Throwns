@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'dart:math';
-import './HomescreenController.dart' as flags;
-import 'package:burgerking_apitest/Components/Content.dart';
-import 'package:burgerking_apitest/Screen/HomeScreen/HomeScreen.dart';
+
+import 'package:burgerking_apitest/Components/content.dart';
+import 'package:burgerking_apitest/Screen/HomeScreen/home_screem.dart';
 import 'package:burgerking_apitest/Service/DataModels/charktermode_class.dart';
 import 'package:burgerking_apitest/Service/Usecases/get_character_case.dart';
-import 'package:burgerking_apitest/Shared/globalContraoller.dart';
+import 'package:burgerking_apitest/Shared/global_contraoller.dart';
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -80,7 +80,7 @@ class HomeScreenController extends ChangeNotifier {
             notifyListeners();
           },
           onSlideUpdate: (SlideRegion? region) async {
-            print("Region $region");
+         
           }));
       notifyListeners();
     }
@@ -97,13 +97,13 @@ Future<void> _saveToPrefs(String key, List<CharacterModel> items) async {
 }
 
 
-Future<List<CharacterModel>> _getFromPrefs(String key) async {
-  final prefs = await SharedPreferences.getInstance();
-  final data = prefs.getStringList(key) ?? [];
-  return data
-      .map((item) => CharacterModel.fromJson(jsonDecode(item)))
-      .toList();
-}
+// Future<List<CharacterModel>> _getFromPrefs(String key) async {
+//   final prefs = await SharedPreferences.getInstance();
+//   final data = prefs.getStringList(key) ?? [];
+//   return data
+//       .map((item) => CharacterModel.fromJson(jsonDecode(item)))
+//       .toList();
+// }
 
   void likeAction(CharacterModel character) async {
     if (!listContainsCharacter(likedItems, character)) {

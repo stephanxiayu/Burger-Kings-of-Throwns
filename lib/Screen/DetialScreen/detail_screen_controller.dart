@@ -1,7 +1,7 @@
 
 
 
-import 'package:burgerking_apitest/Shared/globalContraoller.dart';
+import 'package:burgerking_apitest/Shared/global_contraoller.dart';
 import 'package:flutter/material.dart';
 
 class DetailController extends ChangeNotifier{

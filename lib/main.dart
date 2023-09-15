@@ -1,10 +1,10 @@
 
-import 'package:burgerking_apitest/Screen/HomeScreen/HomeScreen.dart';
+import 'package:burgerking_apitest/Screen/HomeScreen/home_screem.dart';
 import 'package:burgerking_apitest/Service/Setup/data_layer_setup.dart';
 
 import 'package:burgerking_apitest/Shared/approuter.dart';
 
-import 'package:burgerking_apitest/Shared/globalContraoller.dart';
+import 'package:burgerking_apitest/Shared/global_contraoller.dart';
 import 'package:burgerking_apitest/Shared/styles.dart';
 import 'package:burgerking_apitest/Shared/utilities.dart';
 import 'package:flutter/material.dart';
