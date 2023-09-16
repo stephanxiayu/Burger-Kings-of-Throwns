@@ -1,13 +1,13 @@
 import 'dart:convert';
-import 'dart:math';
+
 
 import 'package:burgerking_apitest/Components/content.dart';
 import 'package:burgerking_apitest/Screen/HomeScreen/home_screem.dart';
 import 'package:burgerking_apitest/Shared/global_contraoller.dart';
-import 'package:burgerking_apitest/core/controller/controller.dart';
+import 'package:burgerking_apitest/core/controller/character_controller.dart';
 import 'package:burgerking_apitest/core/model/character_models.dart';
 import 'package:burgerking_apitest/locator.dart';
-import 'package:confetti/confetti.dart';
+
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:swipe_cards/draggable_card.dart';
@@ -27,17 +27,15 @@ class HomeScreenController extends ChangeNotifier {
   MatchEngine? matchEngine;
   HomeScreenController({this.globalController, this.characterData = const []});
 
-Future<List<CharacterModel>> getAllCharacters() async {
-  List<CharacterModel> characters = await getIt.get<ChracterController>().getNextCharacter();
-  print("Characters fetched: ${characters.length}");
-  return characters;
-}
+  Future<List<CharacterModel>> getAllCharacters() async {
+    List<CharacterModel> characters =
+        await getIt.get<ChracterController>().getNextCharacter();
 
+    return characters;
+  }
 
   Future<void> fetchData() async {
-   
- 
-   data = await getAllCharacters();
+    data = await getAllCharacters();
 
     for (int i = 0; i < data!.length; i++) {
       swipeItems.add(SwipeItem(
@@ -73,9 +71,7 @@ Future<List<CharacterModel>> getAllCharacters() async {
             });
             notifyListeners();
           },
-          onSlideUpdate: (SlideRegion? region) async {
-         
-          }));
+          onSlideUpdate: (SlideRegion? region) async {}));
       notifyListeners();
     }
 
@@ -83,21 +79,14 @@ Future<List<CharacterModel>> getAllCharacters() async {
     notifyListeners();
   }
 
-Future<void> _saveToPrefs(String key, List<CharacterModel> items) async {
-  final prefs = await SharedPreferences.getInstance();
-  final data = items.map((item) => jsonEncode(item.toJson())).toList();
-  await prefs.setStringList(key, data);
-  notifyListeners();
-}
+  Future<void> _saveToPrefs(String key, List<CharacterModel> items) async {
+    final prefs = await SharedPreferences.getInstance();
+    final data = items.map((item) => jsonEncode(item.toJson())).toList();
+    await prefs.setStringList(key, data);
+    notifyListeners();
+  }
 
 
-// Future<List<CharacterModel>> _getFromPrefs(String key) async {
-//   final prefs = await SharedPreferences.getInstance();
-//   final data = prefs.getStringList(key) ?? [];
-//   return data
-//       .map((item) => CharacterModel.fromJson(jsonDecode(item)))
-//       .toList();
-// }
 
   void likeAction(CharacterModel character) async {
     if (!listContainsCharacter(likedItems, character)) {
@@ -117,52 +106,6 @@ Future<void> _saveToPrefs(String key, List<CharacterModel> items) async {
     notifyListeners();
   }
 
-  void confetiFunction(){
-     Path drawStar(Size size) {
-    // Method to convert degree to radians
-    double degToRad(double deg) => deg * (pi / 180.0);
 
-    const numberOfPoints = 5;
-    final halfWidth = size.width / 2;
-    final externalRadius = halfWidth;
-    final internalRadius = halfWidth / 2.5;
-    final degreesPerStep = degToRad(360 / numberOfPoints);
-    final halfDegreesPerStep = degreesPerStep / 2;
-    final path = Path();
-    final fullAngle = degToRad(360);
-    path.moveTo(size.width, halfWidth);
-
-    for (double step = 0; step < fullAngle; step += degreesPerStep) {
-      path.lineTo(halfWidth + externalRadius * cos(step),
-          halfWidth + externalRadius * sin(step));
-      path.lineTo(halfWidth + internalRadius * cos(step + halfDegreesPerStep),
-          halfWidth + internalRadius * sin(step + halfDegreesPerStep));
-    }
-    path.close();
-    return path;
-  }
-     late ConfettiController? controllerCenter;
-    controllerCenter =
-        ConfettiController(duration: const Duration(seconds: 3));
-    Align(
-            alignment: Alignment.center,
-            child: ConfettiWidget(
-              confettiController: controllerCenter,
-              blastDirectionality: BlastDirectionality
-                  .explosive, // don't specify a direction, blast randomly
-              shouldLoop:
-                  true, // start again as soon as the animation is finished
-              colors: const [
-                Colors.green,
-                Colors.blue,
-                Colors.pink,
-                Colors.orange,
-                Colors.purple
-              ], // manually specify the colors to be used
-              createParticlePath: drawStar, // define a custom shape/path.
-            ),
-    );
-
-   
-  }
+  
 }

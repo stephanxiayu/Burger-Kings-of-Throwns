@@ -2,8 +2,9 @@ import 'package:burgerking_apitest/Components/svg_item.dart';
 import 'package:burgerking_apitest/Screen/Chats/chat_screen.dart';
 import 'package:burgerking_apitest/Screen/HomeScreen/home_screem.dart';
 import 'package:burgerking_apitest/Screen/Profiles/profil_screen.dart';
+import 'package:burgerking_apitest/Shared/global_contraoller.dart';
 
-import 'package:burgerking_apitest/Shared/styles.dart';
+
 
 import 'package:flutter/material.dart';
 
@@ -18,12 +19,12 @@ class NaviBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
+  GlobalController globalController= GlobalController();
 
     return NavigationBar(
          key: const Key('chatNavBarItem'),
       labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
-      backgroundColor: Styles.of(context).darkblue,
+      backgroundColor: globalController.darkblue,
       height: 70,
       destinations: [
         Card(

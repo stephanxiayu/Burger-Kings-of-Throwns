@@ -1,5 +1,6 @@
 
-import 'package:burgerking_apitest/Shared/styles.dart';
+import 'package:burgerking_apitest/Shared/global_contraoller.dart';
+
 
 import 'package:chat_bubbles/chat_bubbles.dart';
 import 'package:flutter/material.dart';
@@ -76,8 +77,9 @@ void addChatMessage() async {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(backgroundColor: Styles.of(context).darkblue,title:const Text("be nice...", style: TextStyle(color: Colors.grey),) ),
-      backgroundColor: Styles.of(context).darkblue,
+      GlobalController globalController= GlobalController();
+    return Scaffold(appBar: AppBar(backgroundColor: globalController.darkblue,title:const Text("be nice...", style: TextStyle(color: Colors.grey),) ),
+      backgroundColor: globalController.darkblue,
       body: Column(
         children: [
           Expanded(flex: 8,

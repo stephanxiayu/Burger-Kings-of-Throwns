@@ -17,7 +17,7 @@ class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case HomeScreen.pageName:
-        return MaterialPageRoute(
+        return MaterialPageRoute(settings: settings,
           builder: (_) => ChangeNotifierProvider<HomeScreenController>(
             create: (context) => HomeScreenController(
               globalController: Provider.of<GlobalController>(context, listen: false),

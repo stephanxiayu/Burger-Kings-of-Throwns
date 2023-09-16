@@ -1,4 +1,5 @@
-import 'package:burgerking_apitest/Shared/styles.dart';
+import 'package:burgerking_apitest/Shared/global_contraoller.dart';
+
 import 'package:flutter/material.dart';
 
 
@@ -24,7 +25,8 @@ class CharacterCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card( color: Styles.of(context).darkblue,
+      GlobalController globalController= GlobalController();
+    return Card( color: globalController.darkblue,
     shadowColor: Colors.white,
       elevation: 5.0,
       margin: const EdgeInsets.all(15.0),

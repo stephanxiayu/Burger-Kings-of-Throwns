@@ -1,6 +1,7 @@
 
 import 'package:burgerking_apitest/Components/avatar_detail.dart';
-import 'package:burgerking_apitest/Shared/styles.dart';
+import 'package:burgerking_apitest/Shared/global_contraoller.dart';
+
 import 'package:flutter/material.dart';
 
 
@@ -18,8 +19,9 @@ class DetailPage extends StatelessWidget {
 static const String pageName = "DetialScreen";
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(backgroundColor: Styles.of(context).darkblue,
-      appBar: AppBar(backgroundColor:Styles.of(context).darkblue,
+      GlobalController globalController= GlobalController();
+    return  Scaffold(backgroundColor: globalController.darkblue,
+      appBar: AppBar(backgroundColor:globalController.darkblue,
          title: Text(fullName.toString()),),
       body: CharacterCard(id:id,
       family:family.toString(), firstName: firstName.toString(), fullName: fullName.toString(), imageUrl: imageUrl.toString(), lastName: lastName.toString(), title: title.toString(),),

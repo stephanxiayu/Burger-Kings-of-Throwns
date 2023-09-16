@@ -4,12 +4,13 @@ import 'dart:convert';
 
 import 'package:burgerking_apitest/Components/app_scaffold.dart';
 import 'package:burgerking_apitest/Screen/Chats/chat_detail_screen.dart';
+import 'package:burgerking_apitest/Shared/global_contraoller.dart';
 import 'package:burgerking_apitest/core/model/character_models.dart';
 
 import 'package:burgerking_apitest/core/model/items.dart';
 
 import 'package:burgerking_apitest/core/model/chatscreen_model.dart';
-import 'package:burgerking_apitest/Shared/styles.dart';
+
 import 'package:flutter/material.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
@@ -91,6 +92,7 @@ void initState() {
 
   @override
   Widget build(BuildContext context) {
+      GlobalController globalController= GlobalController();
     return AppScaffold(
       selectedPage: ChatScreen.pageName,
       child: Column(
@@ -196,7 +198,7 @@ onTap: () async {
                 );
               },
               child: Card(elevation: 9,
-                color: Styles.of(context).darkblue,
+                color: globalController.darkblue,
                 child: ListTile(
                   title:   Text(chat.character.firstName.toString(),
                       style: const TextStyle(color: Colors.white)),

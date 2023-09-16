@@ -1,6 +1,7 @@
 
 
-import 'package:burgerking_apitest/Shared/styles.dart';
+import 'package:burgerking_apitest/Shared/global_contraoller.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -24,7 +25,8 @@ class SVGAppBarItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(color: Styles.of(context).darkblue,
+      GlobalController globalController= GlobalController();
+    return Container(color: globalController.darkblue,
       child: Column(
         children: [
         IconButton(

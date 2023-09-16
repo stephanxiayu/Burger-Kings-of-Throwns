@@ -1,5 +1,3 @@
-
-
 import 'package:burgerking_apitest/Components/shimmer.dart';
 import 'package:burgerking_apitest/Screen/DetialScreen/detail_screen.dart';
 
@@ -7,7 +5,6 @@ import 'package:burgerking_apitest/Screen/HomeScreen/home_screen_controller.dart
 
 import 'package:burgerking_apitest/Components/app_scaffold.dart';
 import 'package:burgerking_apitest/core/model/character_models.dart';
-
 
 import 'package:confetti/confetti.dart';
 
@@ -33,14 +30,14 @@ class _HomeScreenState extends State<HomeScreen> {
   String? actionMessage;
   List<SwipeItem> swipeItems = <SwipeItem>[];
   MatchEngine? matchEngine;
- final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
   ConfettiController? _confettiController;
 
   @override
   void initState() {
     super.initState();
     homeScreenController.fetchData();
-    print("homeScreenController.fetchData() ${homeScreenController.fetchData()}");
+
     _confettiController =
         ConfettiController(duration: const Duration(seconds: 6));
   }
@@ -79,13 +76,10 @@ class _HomeScreenState extends State<HomeScreen> {
                             Image.network(
                               homeScreenController
                                   .swipeItems[index].content.imageUrl,
-                              height: screenHeight *
-                                  3 /
-                                  3, 
+                              height: screenHeight * 3 / 3,
                               fit: BoxFit.cover,
                             ),
 
-                       
                             Positioned.fill(
                               child: DecoratedBox(
                                 decoration: BoxDecoration(
@@ -96,10 +90,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ],
                                     begin: Alignment.topCenter,
                                     end: Alignment.bottomCenter,
-                                    stops: const [
-                                      0.1,
-                                      1.0
-                                    ],
+                                    stops: const [0.1, 1.0],
                                   ),
                                 ),
                               ),
@@ -135,10 +126,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                       size: 30,
                                     ),
                                     onPressed: () {
-                                      Navigator.of(context).push(
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  DetailPage(
+                                      Navigator.of(context)
+                                          .push(MaterialPageRoute(
+                                              builder: (context) => DetailPage(
                                                     description:
                                                         homeScreenController
                                                             .data![index]
