@@ -7,7 +7,7 @@ import 'dart:convert';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../Service/DataModels/chatscreen_model.dart';
+import '../../core/model/chatscreen_model.dart';
 
 class ChatDetailScreen extends StatefulWidget {
   static const String pageName = "Chat";

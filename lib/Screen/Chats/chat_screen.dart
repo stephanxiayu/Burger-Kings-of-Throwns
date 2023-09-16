@@ -4,16 +4,17 @@ import 'dart:convert';
 
 import 'package:burgerking_apitest/Components/app_scaffold.dart';
 import 'package:burgerking_apitest/Screen/Chats/chat_detail_screen.dart';
+import 'package:burgerking_apitest/core/model/character_models.dart';
 
-import 'package:burgerking_apitest/Service/DataModels/items.dart';
-import 'package:burgerking_apitest/Service/DataModels/charktermode_class.dart';
-import 'package:burgerking_apitest/Service/DataModels/chatscreen_model.dart';
+import 'package:burgerking_apitest/core/model/items.dart';
+
+import 'package:burgerking_apitest/core/model/chatscreen_model.dart';
 import 'package:burgerking_apitest/Shared/styles.dart';
 import 'package:flutter/material.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../Service/DataModels/on_goung_chat.dart';
+import '../../core/model/on_goung_chat.dart';
 
 class ChatScreen extends StatefulWidget {
   static const String pageName = "Deine Chats";

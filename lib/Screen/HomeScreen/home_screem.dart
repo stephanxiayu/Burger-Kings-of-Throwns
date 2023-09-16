@@ -4,8 +4,9 @@ import 'package:burgerking_apitest/Components/shimmer.dart';
 import 'package:burgerking_apitest/Screen/DetialScreen/detail_screen.dart';
 
 import 'package:burgerking_apitest/Screen/HomeScreen/home_screen_controller.dart';
-import 'package:burgerking_apitest/Service/DataModels/charktermode_class.dart';
+
 import 'package:burgerking_apitest/Components/app_scaffold.dart';
+import 'package:burgerking_apitest/core/model/character_models.dart';
 
 
 import 'package:confetti/confetti.dart';
@@ -39,6 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     homeScreenController.fetchData();
+    print("homeScreenController.fetchData() ${homeScreenController.fetchData()}");
     _confettiController =
         ConfettiController(duration: const Duration(seconds: 6));
   }

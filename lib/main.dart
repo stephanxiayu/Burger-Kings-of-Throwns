@@ -1,12 +1,12 @@
 
 import 'package:burgerking_apitest/Screen/HomeScreen/home_screem.dart';
-import 'package:burgerking_apitest/Service/Setup/data_layer_setup.dart';
 
 import 'package:burgerking_apitest/Shared/approuter.dart';
 
 import 'package:burgerking_apitest/Shared/global_contraoller.dart';
 import 'package:burgerking_apitest/Shared/styles.dart';
 import 'package:burgerking_apitest/Shared/utilities.dart';
+import 'package:burgerking_apitest/locator.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
@@ -20,7 +20,7 @@ import 'test_mode.dart' as flags;
 
 Future<void> main() async {
 
-  await DataLayerSetup.initialize();
+    setup();
  
   // Only set the ErrorWidget.builder in non-test modes.
   if (flags.isInTestMode==false) {

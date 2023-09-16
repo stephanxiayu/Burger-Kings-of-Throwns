@@ -3,9 +3,10 @@ import 'dart:math';
 
 import 'package:burgerking_apitest/Components/content.dart';
 import 'package:burgerking_apitest/Screen/HomeScreen/home_screem.dart';
-import 'package:burgerking_apitest/Service/DataModels/charktermode_class.dart';
-import 'package:burgerking_apitest/Service/Usecases/get_character_case.dart';
 import 'package:burgerking_apitest/Shared/global_contraoller.dart';
+import 'package:burgerking_apitest/core/controller/controller.dart';
+import 'package:burgerking_apitest/core/model/character_models.dart';
+import 'package:burgerking_apitest/locator.dart';
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -26,24 +27,17 @@ class HomeScreenController extends ChangeNotifier {
   MatchEngine? matchEngine;
   HomeScreenController({this.globalController, this.characterData = const []});
 
-  Future<void> getAllCharacters() async {
-    var response = await GetAllCharactersCase.it.call(null);
-    response.fold((l) => l.error, (r) {
-      // print("print test ${r}");
-      characterData = r;
-      notifyListeners();
-    });
-    notifyListeners();
-  }
+Future<List<CharacterModel>> getAllCharacters() async {
+  List<CharacterModel> characters = await getIt.get<ChracterController>().getNextCharacter();
+  print("Characters fetched: ${characters.length}");
+  return characters;
+}
+
 
   Future<void> fetchData() async {
-    
-    
-  //    if (flags.isInTestMode==true) {
-  //   await Future.delayed(Duration(seconds: 2));
-  // }
-    await getAllCharacters(); // Make sure this function returns a Future if it's async
-    data = characterData.cast<CharacterModel>();
+   
+ 
+   data = await getAllCharacters();
 
     for (int i = 0; i < data!.length; i++) {
       swipeItems.add(SwipeItem(
